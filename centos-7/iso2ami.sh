@@ -38,13 +38,14 @@ packer build template.json || exit
 tar zxvf *.tar.gz '*.vmdk'
 fn=$( ls -1 *.vmdk | tail -n 1) || ( echo "tar.gz not fount";exit)
 aws s3 cp ${fn} s3://${BUCKET}/${PREFIX} || exit
+DESCRIPTION="cloudpack-ami ${OSREL}"
 
 cat << EOT > vmimport.json
 {
 	"DryRun": true, 
-	"Description": "cloudpack-ami ${OSREL}", 
+	"Description": "${DESCRIPTION}", 
 	"DiskContainers": [ {
-		"Description": "cloudpack-ami ${OSREL}", 
+		"Description": "${DESCRIPTION}", 
 		"UserBucket": {
 			"S3Bucket": "${BUCKET}",
 			"S3Key": "${PREFIX}${fn}"
@@ -55,4 +56,4 @@ cat << EOT > vmimport.json
 	"Platform": "Linux"
 }
 EOT
-aws ec2 import-image --cli-input-json file://./vmimport.json --no-dry-run
+aws ec2 import-image --description "${DESCRIPTION}" --cli-input-json file://./vmimport.json --no-dry-run
