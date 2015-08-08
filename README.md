@@ -3,6 +3,7 @@
 
 ISOから素の状態に近いAMIをフルスクラッチで作成します。
 まだアルファ版な扱いです。
+https://github.com/shiguredo/packer-templates こちらを大いに参考とさせていただきました。
 
 ### 基本方針
 
