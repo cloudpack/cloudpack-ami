@@ -17,7 +17,7 @@ https://github.com/shiguredo/packer-templates こちらを大いに参考とさ�
 - 構成時点において `yum -y update` を実施
 - ログインユーザーは cloudpack(パスワード同じ)
 - HVM対応インスタンスのみ選択可能
-- SR-IOV対応カーネルモジュール(予定)
+- SR-IOV対応カーネルモジュール
 - bash SYSLOG_HISTORYへの対応(予定)
 
 ## cloudpack-amiの作り方
@@ -48,7 +48,6 @@ cd %OSNAME%
 ## ToDo
 
 - bash `-DSYSLOG_HISTORY` の実装
-- ixgbevfの実装(2.16.1を実装する予定)
 - ec2-toolsの実装(複数ENIへの自動対応)
 - 出力ファイル名がかっこよくないので修正する
 - サービス起動の調整
