@@ -74,7 +74,7 @@ if [ \$? -eq 0 ]; then
 	public_ip=\$(curl --connect-timeout 2 -s 169.254.169.254/latest/meta-data/public-ipv4 | head -n 1 | grep -e "^[^<]")
 	echo "####   Public IP:         \$public_ip"
 else
-	echo "####   Private IP:        \$(/sbin/ip -f inet addr show | gawk '\$0 ~ /inet/ {print }'| grep -v "127.0.0.1")"
+	echo "####   Private IP:        \$(/sbin/ip -f inet addr show | gawk '$0 ~ /inet/ {print $2}''| grep -v "127.0.0.1")"
 fi
 echo "####"
 EOT
