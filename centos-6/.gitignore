@@ -1,0 +1,7 @@
+*.tar.gz
+*.vmdk
+*.zip
+Vagrantfile
+packer_cache/
+packer_cache/*
+vmimport.json
