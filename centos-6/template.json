@@ -9,13 +9,13 @@
       "disk_size": 8192,
       "guest_os_type": "RedHat_64",
       "http_directory": "http",
-      "iso_checksum": "4ed6c56d365bd3ab12cd88b8a480f4a62e7c66d2",
+      "iso_checksum": "2ed5ea551dffc3e4b82847b3cee1f6cd748e8071",
       "iso_checksum_type": "sha1",
-      "iso_url": "http://ftp.iij.ad.jp/pub/linux/centos/6.6/isos/x86_64/CentOS-6.6-x86_64-minimal.iso",
+      "iso_url": "http://ftp.iij.ad.jp/pub/linux/centos/6.7/isos/x86_64/CentOS-6.7-x86_64-minimal.iso",
       "ssh_username": "cloudpack",
       "ssh_password": "cloudpack",
       "ssh_port": 22,
-      "headless": true,
+      "headless": false,
       "ssh_wait_timeout": "10000s",
       "shutdown_command": "echo '/sbin/halt -h -p' > /tmp/shutdown.sh; echo 'cloudpack'|sudo -S sh '/tmp/shutdown.sh'",
       "guest_additions_path": "VBoxGuestAdditions_{{.Version}}.iso",
@@ -63,7 +63,7 @@
       "type": "vagrant",
       "override": {
         "virtualbox": {
-          "output": "centos-5-x86_64-box.tar.gz"
+          "output": "centos-6-x86_64-box.tar.gz"
         }
       }
     }
