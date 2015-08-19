@@ -1,4 +1,3 @@
-# 5 6 7
 cat << EOT > /etc/yum.repos.d/nginx.repo
 [nginx]
 name=nginx repo

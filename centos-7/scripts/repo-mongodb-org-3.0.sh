@@ -1,4 +1,3 @@
-#5 6 7
 cat << EOT > /etc/yum.repos.d/mongodb-org-3.0.repo
 [mongodb-org-3.0]
 name=MongoDB Repository

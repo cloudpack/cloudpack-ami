@@ -1,4 +1,3 @@
-# 5 6 7
 HOSTNAME=`hostname -f`
 FILENAME=/etc/yum.repos.d/basho.repo
 OS=el
