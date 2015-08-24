@@ -25,13 +25,14 @@ sed -i -e "s/^ZONE/#ZONE/g" -e "1i ZONE=\"Asia/Tokyo\"" /etc/sysconfig/clock
 /usr/sbin/tzdata-update
 yum -y install epel-release
 yum -y update
-yum install -y htop strace mtr dstat sysstat tcpdump chrony jq python-pip irqbalance cloud-utils cloud-utils-growpart lsof
+yum install -y htop strace mtr dstat sysstat tcpdump chrony jq python-pip irqbalance cloud-utils cloud-utils-growpart lsof dracut-modules-growroot
 pip install -U urllib3
 pip install -U awscli
 systemctl enable chronyd.service
 systemctl enable irqbalance.service
 systemctl enable sysstat.service
 systemctl disable lvm2-monitor.service
+dracut --force --add growroot /boot/initramfs-$(uname -r).img
 cat << EOT >> /etc/sysctl.conf
 # allow testing with buffers up to 64MB 
 net.core.rmem_max = 67108864 
