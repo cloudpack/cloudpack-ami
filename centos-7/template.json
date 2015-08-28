@@ -63,7 +63,7 @@
       "type": "vagrant",
       "override": {
         "virtualbox": {
-          "output": "centos-5-x86_64-box.tar.gz"
+          "output": "centos-7-x86_64-box.tar.gz"
         }
       }
     }
