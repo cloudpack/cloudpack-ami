@@ -1,3 +1,5 @@
+yum -y install epel-release
+yum -y update
 yum -y install cloud-init
 sed -i.bak 's@\(.*\)name: \(.*\)@\1name: cloudpack@g' /etc/cloud/cloud.cfg
 sed -i.bak 's@\(.*\)/mnt\(.*)@#\1/mnt\2@g' /etc/fstab
@@ -23,8 +25,6 @@ bootcmd:
 EOT
 sed -i -e "s/^ZONE/#ZONE/g" -e "1i ZONE=\"Asia/Tokyo\"" /etc/sysconfig/clock
 /usr/sbin/tzdata-update
-yum -y install epel-release
-yum -y update
 yum install -y htop strace mtr dstat sysstat tcpdump chrony jq python-pip irqbalance cloud-utils cloud-utils-growpart lsof dracut-modules-growroot
 pip install -U urllib3
 pip install -U awscli
