@@ -39,7 +39,7 @@ cd %OSNAME%
 - AWSアカウント
 - S3バケット(ImportImageを実施するため)
 - [Packer](https://www.packer.io)
-- [VirtualBox](https://www.virtualbox.org)
+- [VirtualBox](https://www.virtualbox.org) - 5系だと期待した動作が出来ていません
 - [Vagrant](https://www.vagrantup.com)
 - [AWS CLI](https://github.com/aws/aws-cli)
 - 上記が利用できる環境(当方OSXで実装)
