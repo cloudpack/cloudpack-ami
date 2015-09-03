@@ -5,3 +5,5 @@ Vagrantfile
 packer_cache/
 packer_cache/*
 vmimport.json
+.vagrant/
+output-virtualbox-iso/
