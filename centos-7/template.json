@@ -44,7 +44,6 @@
         "virtualbox-iso": {
           "scripts": [
             "scripts/base.sh",
-            "scripts/vagrant.sh",
             "scripts/cloudpack.sh",
             "scripts/repo-mongodb-org-3.0.sh",
             "scripts/repo-mysql.sh",
