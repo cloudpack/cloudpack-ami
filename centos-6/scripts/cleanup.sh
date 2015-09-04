@@ -7,6 +7,7 @@ rm -rf /tmp/rubygems-*
 yum clean all
 rm -f /etc/ssh/ssh_host_*
 rm -rf /var/lib/cloud
+cd /var/log
 ls -F /var/log | grep -v / | xargs -L1 cp /dev/null
 find /var/log/ -type f -name \*log | xargs -L1 cp /dev/null
 cp /dev/null /var/log/audit/audit.log
