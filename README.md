@@ -49,5 +49,3 @@ cd %OSNAME%
 
 - bash `-DSYSLOG_HISTORY` の実装
 - ec2-toolsの実装(複数ENIへの自動対応)
-- 出力ファイル名がかっこよくないので修正する
-- サービス起動の調整
