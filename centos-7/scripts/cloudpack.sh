@@ -23,8 +23,7 @@ bootcmd:
   - mkswap /dev/xvdb
   - swapon /dev/xvdb
 EOT
-sed -i -e "s/^ZONE/#ZONE/g" -e "1i ZONE=\"Asia/Tokyo\"" /etc/sysconfig/clock
-/usr/sbin/tzdata-update
+timedatectl set-timezone Asia/Tokyo
 yum install -y htop strace mtr dstat sysstat tcpdump chrony jq python-pip irqbalance cloud-utils cloud-utils-growpart lsof dracut-modules-growroot
 pip install -U urllib3
 pip install -U awscli
