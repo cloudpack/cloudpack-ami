@@ -25,7 +25,7 @@ bootcmd:
 EOT
 timedatectl set-timezone Asia/Tokyo
 yum install -y htop strace mtr dstat sysstat tcpdump chrony jq python-pip irqbalance cloud-utils cloud-utils-growpart lsof dracut-modules-growroot
-pip install -U urllib3
+pip install -U urllib3 pip
 pip install -U awscli
 systemctl enable chronyd.service
 systemctl enable irqbalance.service
