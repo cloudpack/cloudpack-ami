@@ -1,4 +1,3 @@
-# 5 6 7
 cat << EOT >  /etc/yum.repos.d/neo4j.repo
 [neo4j]
 name=Neo4j Yum Repo

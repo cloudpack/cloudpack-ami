@@ -2,7 +2,8 @@ yum -y install epel-release
 yum -y update
 yum -y install cloud-init
 sed -i.bak 's@\(.*\)name: \(.*\)@\1name: cloudpack@g' /etc/cloud/cloud.cfg
-sed -i.bak 's@\(.*\)/mnt\(.*)@#\1/mnt\2@g' /etc/fstab
+sed -i.bak 's@\(.*\)/mnt\(.*\)@#\1/mnt\2@g' /etc/fstab
+sed -i.bak 's@inet_protocols(*)=(.*)@inet_protocols = ipv4@g' /etc/postfix.conf
 cat << EOT >> /etc/cloud/cloud.cfg.d/99-cloudpack.cfg
 datasource_list: [Ec2]
 datasource:
@@ -30,7 +31,9 @@ pip install -U awscli
 systemctl enable chronyd.service
 systemctl enable irqbalance.service
 systemctl enable sysstat.service
+systemctl enable NetworkManager-wait-online.service
 systemctl disable lvm2-monitor.service
+systemctl disable kdump.service
 dracut --force --add growroot /boot/initramfs-$(uname -r).img
 cat << EOT >> /etc/sysctl.conf
 # allow testing with buffers up to 64MB 
