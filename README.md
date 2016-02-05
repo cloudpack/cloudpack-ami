@@ -10,6 +10,7 @@ https://github.com/shiguredo/packer-templates こちらを大いに参考とさ�
 - 可能な限り公式に提供されているISOをもとにして構成します。
 - SR-IOV / irqbalance などは初期状態で組み込みます。
 - bashの `SYSLOG_HISTORY` に対応します。
+- ログインユーザーは `cloudpack` となります(sudo可)。
 
 ### 取り込んでいるもの(予定含む)
 
