@@ -20,7 +20,6 @@ fs_setup:
 
 mounts:
   - [ /dev/xvdc, /mnt/ephemeral/1 ]
-
 EOT
 timedatectl set-timezone Asia/Tokyo
 yum install -y htop strace mtr dstat sysstat tcpdump chrony jq python-pip irqbalance cloud-utils cloud-utils-growpart lsof dracut-modules-growroot

@@ -2,7 +2,7 @@ yum -y install epel-release
 yum -y update
 yum -y install cloud-init
 sed -i.bak 's@\(.*\)name: \(.*\)@\1name: cloudpack@g' /etc/cloud/cloud.cfg
-sed -i.bak 's@\(.*\)/mnt\(.*)@#\1/mnt\2@g' /etc/fstab
+sed -i.bak 's@\(.*\)/mnt\(.*\)@#\1/mnt\2@g' /etc/fstab
 cat << EOT >> /etc/cloud/cloud.cfg.d/99-cloudpack.cfg
 locale: en_US.UTF-8
 datasource_list: [Ec2]
@@ -18,11 +18,7 @@ fs_setup:
     partition: auto
 
 mounts:
-  - [ ephemeral0, swap, swap ,"defaults", "0", "0"]
   - [ /dev/xvdc, /mnt/ephemeral/1 ]
-bootcmd:
-  - mkswap /dev/xvdb
-  - swapon /dev/xvdb
 EOT
 sed -i -e "s/^ZONE/#ZONE/g" -e "1i ZONE=\"Asia/Tokyo\"" /etc/sysconfig/clock
 /usr/sbin/tzdata-update
@@ -69,15 +65,15 @@ echo "####"
 echo -e "#### You have logged in to \e[1mlocalhost.localdomain\e[m as \e[1m\$(id -n -u)\e[m successfully."
 InstanceID=\$( \${CURL_CMD} 169.254.169.254/latest/meta-data/instance-id)
 if [ \$? -eq 0 ]; then
-        echo -e "#### This server is running on \e[1m\e[33mAWS\e[m."
-        echo "####   Instance ID:       \$( \${CURL_CMD} 169.254.169.254/latest/meta-data/instance-id)"
-        echo "####   Instance Type:     \$( \${CURL_CMD} 169.254.169.254/latest/meta-data/instance-type)"
-        echo "####   Availability Zone: \$( \${CURL_CMD} 169.254.169.254/latest/meta-data/placement/availability-zone)"
-        echo "####   Private IP:        \$( \${CURL_CMD} 169.254.169.254/latest/meta-data/local-ipv4)"
-        public_ip=\$( \${CURL_CMD} 169.254.169.254/latest/meta-data/public-ipv4 | head -n 1 | grep -e "^[^<]")
-        echo "####   Public IP:         \$public_ip"
+	echo -e "#### This server is running on \e[1m\e[33mAWS\e[m."
+	echo "####   Instance ID:       \$( \${CURL_CMD} 169.254.169.254/latest/meta-data/instance-id)"
+	echo "####   Instance Type:     \$( \${CURL_CMD} 169.254.169.254/latest/meta-data/instance-type)"
+	echo "####   Availability Zone: \$( \${CURL_CMD} 169.254.169.254/latest/meta-data/placement/availability-zone)"
+	echo "####   Private IP:        \$( \${CURL_CMD} 169.254.169.254/latest/meta-data/local-ipv4)"
+	public_ip=\$( \${CURL_CMD} 169.254.169.254/latest/meta-data/public-ipv4 | head -n 1 | grep -e "^[^<]")
+	echo "####   Public IP:         \$public_ip"
 else
-        echo "####   Private IP:        \$(/sbin/ip -f inet addr show | gawk '\$0 ~ /inet/ {print \$2}'| grep -v "127.0.0.1")"
+	echo "####   Private IP:        \$(/sbin/ip -f inet addr show | gawk '\$0 ~ /inet/ {print \$2}'| grep -v "127.0.0.1")"
 fi
 echo "####"
 EOT

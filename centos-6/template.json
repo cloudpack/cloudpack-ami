@@ -49,7 +49,6 @@
 	    "scripts/repo-postgresql.sh",
 	    "scripts/repo-riak.sh",
             "scripts/base.sh",
-	    "scripts/vagrant.sh",
             "scripts/cloudpack.sh",
             "scripts/cleanup.sh"
           ]
