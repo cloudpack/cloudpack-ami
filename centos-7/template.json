@@ -15,7 +15,7 @@
       "ssh_username": "cloudpack",
       "ssh_password": "cloudpack",
       "ssh_port": 22,
-      "headless": true,
+      "headless": false,
       "ssh_wait_timeout": "10000s",
       "shutdown_command": "echo '/sbin/halt -h -p' > /tmp/shutdown.sh; echo 'cloudpack'|sudo -S sh '/tmp/shutdown.sh'",
       "guest_additions_path": "VBoxGuestAdditions_{{.Version}}.iso",
