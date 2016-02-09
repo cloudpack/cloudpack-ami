@@ -5,6 +5,7 @@ sed -i.bak 's@\(.*\)name: \(.*\)@\1name: cloudpack@g' /etc/cloud/cloud.cfg
 sed -i.bak 's@\(.*\)/mnt\(.*\)@#\1/mnt\2@g' /etc/fstab
 sed -i.bak 's@inet_protocols(*)=(.*)@inet_protocols = ipv4@g' /etc/postfix.conf
 cat << EOT >> /etc/cloud/cloud.cfg.d/99-cloudpack.cfg
+locale: en_US.UTF-8
 datasource_list: [Ec2]
 datasource:
   Ec2:
@@ -18,11 +19,8 @@ fs_setup:
     partition: auto
 
 mounts:
-  - [ ephemeral0, swap, swap ,"defaults", "0", "0"]
   - [ /dev/xvdc, /mnt/ephemeral/1 ]
-bootcmd:
-  - mkswap /dev/xvdb
-  - swapon /dev/xvdb
+
 EOT
 timedatectl set-timezone Asia/Tokyo
 yum install -y htop strace mtr dstat sysstat tcpdump chrony jq python-pip irqbalance cloud-utils cloud-utils-growpart lsof dracut-modules-growroot
