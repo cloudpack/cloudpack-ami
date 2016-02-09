@@ -2,7 +2,6 @@
 ## cloudpack-amiとは何か
 
 ISOから素の状態に近いAMIをフルスクラッチで作成します。
-まだアルファ版な扱いです。
 https://github.com/shiguredo/packer-templates こちらを大いに参考とさせていただきました。
 
 ### 基本方針
@@ -24,7 +23,7 @@ https://github.com/shiguredo/packer-templates こちらを大いに参考とさ�
 ## cloudpack-amiの作り方
 
 以下の手続きを行うことでAMI作成手続きを実行します。
-- 公式ISOの取得とsha1確認
+- 公式ISOの取得とsha256確認
 - kickstartによる構成
 - kickstartにて作成されたベースに最低限の構成
 - 作成したVMDKをS3へアップロード
@@ -40,7 +39,7 @@ cd %OSNAME%
 - AWSアカウント
 - S3バケット(ImportImageを実施するため)
 - [Packer](https://www.packer.io)
-- [VirtualBox](https://www.virtualbox.org) - 5系だと期待した動作が出来ていません
+- [VirtualBox](https://www.virtualbox.org)
 - [Vagrant](https://www.vagrantup.com)
 - [AWS CLI](https://github.com/aws/aws-cli)
 - 上記が利用できる環境(当方OSXで実装)
