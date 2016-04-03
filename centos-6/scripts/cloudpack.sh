@@ -59,6 +59,9 @@ cat << EOT >> /etc/security/limits.d/99-cloudpack.conf
 * soft nofile 65536
 * hard nofile 65536
 EOT
+cat << EOT >> /etc/sysconfig/init
+ulimit -n 524288
+EOT
 cat << EOT >> /etc/profile.d/motd.sh
 CURL_CMD="curl --max-time 2 --connect-timeout 2 -s"
 echo "####"
