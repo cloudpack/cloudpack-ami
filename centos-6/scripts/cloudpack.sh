@@ -1,6 +1,9 @@
 yum -y install epel-release
 yum -y update
 yum -y install cloud-init
+rpm -Uvh --force /tmp/bash-4.1.2-33.el6.1cloudpack.x86_64.rpm
+rpm -ivh /tmp/ec2-net-utils-0.4-1.24.el6cloudpack.noarch.rpm
+rpm -ivh /tmp/ec2-utils-0.4-1.24.el6cloudpack.noarch.rpm
 sed -i.bak 's@\(.*\)name: \(.*\)@\1name: cloudpack@g' /etc/cloud/cloud.cfg
 sed -i.bak 's@\(.*\)/mnt\(.*\)@#\1/mnt\2@g' /etc/fstab
 cat << EOT >> /etc/cloud/cloud.cfg.d/99-cloudpack.cfg
@@ -30,6 +33,7 @@ chkconfig irqbalance on
 chkconfig sysstat on
 chkconfig lvm2-monitor off
 dracut --force --add growroot /boot/initramfs-$(uname -r).img
+cp /tmp/rpsxps /etc/init.d && chkconfig rpsxps on
 cat << EOT >> /etc/sysctl.conf
 # allow testing with buffers up to 64MB 
 net.core.rmem_max = 67108864 
