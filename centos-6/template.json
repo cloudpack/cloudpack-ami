@@ -58,6 +58,11 @@
       "destination": "/tmp/ec2-utils-0.4-1.24.el6cloudpack.noarch.rpm"
     },
     {
+      "type": "file",
+      "source": "files/ixgbevf-3.1.2-1.x86_64.rpm",
+      "destination": "/tmp/ixgbevf-3.1.2-1.x86_64.rpm"
+    },
+    {
       "type": "shell",
       "execute_command": "echo 'cloudpack'|sudo -S sh '{{.Path}}'",
       "override": {
@@ -69,7 +74,6 @@
 	    "scripts/repo-postgresql.sh",
 	    "scripts/repo-riak.sh",
             "scripts/base.sh",
-	    "scripts/vagrant.sh",
             "scripts/cloudpack.sh",
             "scripts/cleanup.sh"
           ]

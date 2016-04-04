@@ -3,6 +3,7 @@ yum -y update
 yum -y install cloud-init
 rpm -Uvh --force /tmp/bash-4.1.2-33.el6.1cloudpack.x86_64.rpm
 rpm -ivh /tmp/ec2-net-utils-0.4-1.24.el6cloudpack.noarch.rpm
+rpm -ivh --force /tmpixgbevf-3.1.2-1.x86_64.rpm
 rpm -ivh /tmp/ec2-utils-0.4-1.24.el6cloudpack.noarch.rpm
 sed -i.bak 's@\(.*\)name: \(.*\)@\1name: cloudpack@g' /etc/cloud/cloud.cfg
 sed -i.bak 's@\(.*\)/mnt\(.*\)@#\1/mnt\2@g' /etc/fstab
@@ -25,7 +26,7 @@ mounts:
 EOT
 sed -i -e "s/^ZONE/#ZONE/g" -e "1i ZONE=\"Asia/Tokyo\"" /etc/sysconfig/clock
 /usr/sbin/tzdata-update
-yum install -y htop strace mtr dstat sysstat tcpdump chrony jq python-pip irqbalance cloud-utils cloud-utils-growpart lsof dracut-modules-growroot
+yum install -y bc htop strace mtr dstat sysstat tcpdump chrony jq python-pip irqbalance cloud-utils cloud-utils-growpart lsof dracut-modules-growroot
 pip install -U urllib3 pip
 pip install -U awscli
 chkconfig chronyd on
@@ -33,7 +34,7 @@ chkconfig irqbalance on
 chkconfig sysstat on
 chkconfig lvm2-monitor off
 dracut --force --add growroot /boot/initramfs-$(uname -r).img
-cp /tmp/rpsxps /etc/init.d && chkconfig rpsxps on
+cp /tmp/rpsxps /etc/init.d/ && chmod ugo+x /etc/init.d/rpsxps && chkconfig rpsxps on
 cat << EOT >> /etc/sysctl.conf
 # allow testing with buffers up to 64MB 
 net.core.rmem_max = 67108864 
