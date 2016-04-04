@@ -3,7 +3,7 @@ yum -y update
 yum -y install cloud-init
 rpm -Uvh --force /tmp/bash-4.1.2-33.el6.1cloudpack.x86_64.rpm
 rpm -ivh /tmp/ec2-net-utils-0.4-1.24.el6cloudpack.noarch.rpm
-rpm -ivh --force /tmpixgbevf-3.1.2-1.x86_64.rpm
+rpm -ivh --force /tmp/ixgbevf-3.1.2-1.x86_64.rpm
 rpm -ivh /tmp/ec2-utils-0.4-1.24.el6cloudpack.noarch.rpm
 sed -i.bak 's@\(.*\)name: \(.*\)@\1name: cloudpack@g' /etc/cloud/cloud.cfg
 sed -i.bak 's@\(.*\)/mnt\(.*\)@#\1/mnt\2@g' /etc/fstab
