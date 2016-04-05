@@ -19,7 +19,7 @@ mounts:
 EOT
 sed -i -e "s/^ZONE/#ZONE/g" -e "1i ZONE=\"Asia/Tokyo\"" /etc/sysconfig/clock
 /usr/sbin/tzdata-update
-yum install -y bc htop strace mtr dstat sysstat tcpdump chrony jq python-pip irqbalance cloud-utils cloud-utils-growpart lsof dracut-modules-growroot
+yum install -y bc htop strace mtr dstat sysstat tcpdump chrony jq python-pip irqbalance
 pip install -U urllib3 pip
 pip install -U awscli
 chkconfig chronyd on

@@ -33,7 +33,7 @@ OSREL=$(basename `pwd`)
 
 if [[ -z  ${PREFIX+x} ]]; then export PREFIX=${PREFIX}/ ; fi
 
-packer build template.json || exit
+packer build vbox.json || exit
 
 tar zxvf *.tar.gz '*.vmdk'
 fn=$( ls -1 *.vmdk | tail -n 1) || ( echo "tar.gz not fount";exit)

@@ -1,7 +1,9 @@
 yum -y install epel-release
 yum -y update
+
 yum -y install gcc make gcc-c++ kernel-devel-`uname -r` perl
-yum -y install cloud-init
+yum -y install cloud-init cloud-utils cloud-utils-growpart lsof dracut-modules-growroot
+
 sed -i.bak 's@\(.*\)name: \(.*\)@\1name: cloudpack@g' /etc/cloud/cloud.cfg
 sed -i.bak 's@\(.*\)/mnt\(.*\)@#\1/mnt\2@g' /etc/fstab
 rpm -Uvh --force /tmp/bash-4.1.2-33.el6.1cloudpack.x86_64.rpm
