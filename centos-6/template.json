@@ -68,14 +68,15 @@
       "override": {
         "virtualbox-iso": {
           "scripts": [
+            "scripts/base.sh",
+	    "scripts/virtualbox.sh",
+	    "scripts/vagrant.sh",
 	    "scripts/repo-mongodb-org-3.0.sh",
 	    "scripts/repo-neo4j.sh",
 	    "scripts/repo-nginx.sh",
 	    "scripts/repo-postgresql.sh",
 	    "scripts/repo-mysql.sh",
 	    "scripts/repo-riak.sh",
-            "scripts/base.sh",
-            "scripts/cloudpack.sh",
             "scripts/cleanup.sh"
           ]
         }
