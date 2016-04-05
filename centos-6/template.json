@@ -72,6 +72,7 @@
 	    "scripts/repo-neo4j.sh",
 	    "scripts/repo-nginx.sh",
 	    "scripts/repo-postgresql.sh",
+	    "scripts/repo-mysql.sh",
 	    "scripts/repo-riak.sh",
             "scripts/base.sh",
             "scripts/cloudpack.sh",
