@@ -1,5 +1,6 @@
-#rpm -ivh /tmp/ec2-net-utils-0.4-1.24.el6cloudpack.noarch.rpm
-#rpm -ivh /tmp/ec2-utils-0.4-1.24.el6cloudpack.noarch.rpm
+rpm -ivh /tmp/ec2-net-utils-0.4-1.24.el6cloudpack.noarch.rpm
+rpm -ivh /tmp/ec2-utils-0.4-1.24.el6cloudpack.noarch.rpm
+yum update -y
 cat << EOT >> /etc/cloud/cloud.cfg.d/99-cloudpack.cfg
 locale: en_US.UTF-8
 datasource_list: [Ec2]

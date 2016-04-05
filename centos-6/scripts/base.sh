@@ -12,7 +12,7 @@ rpm -Uvh --force /tmp/bash-4.1.2-33.el6.1cloudpack.x86_64.rpm
 yum -y install dkms
 # ixgbevfソースのダウンロード（dkmsの都合で /usr/src である必要アリ）
 cd /usr/src
-wget -O ixgbevf-3.1.2.tar.gz "http://downloads.sourceforge.net/project/e1000/ixgbevf%20stable/3.1.2/ixgbevf-3.1.2.tar.gz"
+curl -O -L http://downloads.sourceforge.net/project/e1000/ixgbevf%20stable/3.1.2/ixgbevf-3.1.2.tar.gz
 tar xzf ixgbevf-3.1.2.tar.gz
 cd ixgbevf-3.1.2
  
