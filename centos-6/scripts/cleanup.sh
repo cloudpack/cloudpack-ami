@@ -12,10 +12,6 @@ rm -rf /var/lib/cloud
 cd /var/log
 ls -F /var/log | grep -v / | xargs -L1 cp /dev/null
 find /var/log/ -type f -name \*log | xargs -L1 cp /dev/null
-mv /etc/sysconfig/network-scripts/vmimport.ifcfg-lo /etc/sysconfig/network-scripts/ifcfg-lo
-rm /etc/sysconfig/network-scripts/ifcfg-eth0.vmimport
-cp /dev/null /var/log/audit/audit.log
-cp /dev/null /root/.ssh/authorized_keys
-cp /dev/null /root/.bash_history
-cp /dev/null /home/cloudpack/.ssh/authorized_keys
-cp /dev/null /home/cloudpack/.bash_history
+for toremove in /var/log/audit/audit.log /root/.ssh/authorized_keys /root/.bash_history /home/cloudpack/.ssh/authorized_keys /home/cloudpack/.bash_history;do
+	if [ -f ${toremove} ]; then cp /dev/null ${toremove};fi
+done
