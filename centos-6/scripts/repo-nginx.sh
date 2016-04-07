@@ -3,5 +3,5 @@ cat << EOT > /etc/yum.repos.d/nginx.repo
 name=nginx repo
 baseurl=http://nginx.org/packages/centos/\$releasever/\$basearch/
 gpgcheck=0
-enabled=1
+enabled=0
 EOT
