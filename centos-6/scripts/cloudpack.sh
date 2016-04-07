@@ -20,14 +20,12 @@ mounts:
 EOT
 sed -i -e "s/^ZONE/#ZONE/g" -e "1i ZONE=\"Asia/Tokyo\"" /etc/sysconfig/clock
 /usr/sbin/tzdata-update
-yum install -y bc htop strace mtr dstat sysstat tcpdump chrony jq python-pip irqbalance
-pip install -U urllib3 pip
-pip install -U awscli
+yum install -y bc strace mtr dstat sysstat tcpdump irqbalance
+yum install -y --enablerepo=epel chrony jq htop
 chkconfig chronyd on
 chkconfig irqbalance on
 chkconfig sysstat on
 chkconfig lvm2-monitor off
-dracut --force --add growroot /boot/initramfs-$(uname -r).img
 cp /tmp/rpsxps /etc/init.d/ && chmod ugo+x /etc/init.d/rpsxps && chkconfig rpsxps on
 cat << EOT >> /etc/sysctl.conf
 # allow testing with buffers up to 64MB 

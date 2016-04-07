@@ -1,15 +1,25 @@
 yum -y install epel-release
+sed -i 's:enabled=.*:enabled=0:' /etc/yum.repos.d/epel*.repo
 yum -y update
 
 yum -y install gcc make gcc-c++ kernel-devel-`uname -r` perl
-yum -y install cloud-init cloud-utils cloud-utils-growpart lsof dracut-modules-growroot
+yum -y install --enablerepo=epel \
+	cloud-init \
+	cloud-utils \
+	cloud-utils-growpart \
+	lsof \
+	dracut-modules-growroot \
+	dkms \
+	python-pip
+pip install -U urllib3 pip
+pip install -U awscli
 
 sed -i.bak 's@\(.*\)name: \(.*\)@\1name: cloudpack@g' /etc/cloud/cloud.cfg
 sed -i.bak 's@\(.*\)/mnt\(.*\)@#\1/mnt\2@g' /etc/fstab
+dracut --force --add growroot /boot/initramfs-$(uname -r).img
+
 rpm -Uvh --force /tmp/bash-4.1.2-33.el6.1cloudpack.x86_64.rpm
 
-# dkms準備
-yum -y install dkms
 # ixgbevfソースのダウンロード（dkmsの都合で /usr/src である必要アリ）
 cd /usr/src
 curl -O -L http://downloads.sourceforge.net/project/e1000/ixgbevf%20stable/3.1.2/ixgbevf-3.1.2.tar.gz
