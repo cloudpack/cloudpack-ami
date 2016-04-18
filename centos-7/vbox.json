@@ -38,13 +38,17 @@
   ],
   "provisioners": [
     {
+      "type": "file",
+      "source": "files/bash-4.2.46-19cloudpack.el7.centos.x86_64.rpm",
+      "destination": "/tmp/bash-4.2.46-19cloudpack.el7.centos.x86_64.rpm"
+    },
+    {
       "type": "shell",
       "execute_command": "echo 'cloudpack'|sudo -S sh '{{.Path}}'",
       "override": {
         "virtualbox-iso": {
           "scripts": [
             "scripts/base.sh",
-	    "scripts/virtualbox.sh",
 	    "scripts/vagrant.sh",
             "scripts/cleanup.sh"
           ]
