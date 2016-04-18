@@ -18,7 +18,7 @@ https://github.com/shiguredo/packer-templates こちらを大いに参考とさ�
 - ログインユーザーは cloudpack(パスワード同じ)
 - HVM対応インスタンスのみ選択可能
 - SR-IOV対応カーネルモジュール
-- bash SYSLOG_HISTORYへの対応(予定)
+- bash SYSLOG_HISTORYへの対応
 
 ## cloudpack-amiの作り方
 
@@ -32,6 +32,7 @@ https://github.com/shiguredo/packer-templates こちらを大いに参考とさ�
 ```
 cd %OSNAME%
 ./iso2ami.sh -B %YOUR_S3_BUCKET_NAME%
+packer build -var 'aws_source_ami=%AMI_ID%' build
 ```
 
 ### 必要な要素
@@ -47,5 +48,5 @@ cd %OSNAME%
 
 ## ToDo
 
-- bash `-DSYSLOG_HISTORY` の実装
-- ec2-toolsの実装(複数ENIへの自動対応)
+- bash `-DSYSLOG_HISTORY` の実装(CentOS7)
+- ec2-toolsの実装(CentOS7)
