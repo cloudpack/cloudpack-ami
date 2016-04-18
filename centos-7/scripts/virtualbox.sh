@@ -8,4 +8,4 @@ mount -o loop /home/cloudpack/VBoxGuestAdditions_$VBOX_VERSION.iso /mnt
 sh /mnt/VBoxLinuxAdditions.run
 umount /mnt
 rm -rf /home/cloudpack/VBoxGuestAdditions_*.iso
-
+rm /var/log/vboxadd-install.log
