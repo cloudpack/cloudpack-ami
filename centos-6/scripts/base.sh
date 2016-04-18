@@ -20,6 +20,7 @@ dracut --force --add growroot /boot/initramfs-$(uname -r).img
 
 rpm -Uvh --force /tmp/bash-4.1.2-33.el6.1cloudpack.x86_64.rpm
 
+# http://blog.father.gedow.net/2016/03/15/enhanced-networking/ を参照　多謝
 # ixgbevfソースのダウンロード（dkmsの都合で /usr/src である必要アリ）
 cd /usr/src
 curl -O -L http://downloads.sourceforge.net/project/e1000/ixgbevf%20stable/3.1.2/ixgbevf-3.1.2.tar.gz

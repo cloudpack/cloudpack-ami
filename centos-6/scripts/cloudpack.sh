@@ -82,3 +82,6 @@ cat << EOT >> /etc/profile.d/bash_completion.sh
 HISTTIMEFORMAT='%Y-%m-%dT%T%z '
 HISTSIZE=1000000
 EOT
+
+mv /etc/sysconfig/network-scripts/vmimport.ifcfg-lo /etc/sysconfig/network-scripts/ifcfg-lo
+rm /etc/sysconfig/network-scripts/ifcfg-eth0.vmimport
