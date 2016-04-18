@@ -43,18 +43,12 @@
       "destination": "/tmp/bash-4.1.2-33.el6.1cloudpack.x86_64.rpm"
     },
     {
-      "type": "file",
-      "source": "files/ixgbevf-3.1.2-1.x86_64.rpm",
-      "destination": "/tmp/ixgbevf-3.1.2-1.x86_64.rpm"
-    },
-    {
       "type": "shell",
       "execute_command": "echo 'cloudpack'|sudo -S sh '{{.Path}}'",
       "override": {
         "virtualbox-iso": {
           "scripts": [
             "scripts/base.sh",
-	    "scripts/virtualbox.sh",
 	    "scripts/vagrant.sh",
             "scripts/cleanup.sh"
           ]

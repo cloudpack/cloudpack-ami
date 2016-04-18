@@ -1,6 +1,3 @@
-rpm -ivh /tmp/ec2-net-utils-0.4-1.24.el6cloudpack.noarch.rpm
-rpm -ivh /tmp/ec2-utils-0.4-1.24.el6cloudpack.noarch.rpm
-yum update -y
 cat << EOT >> /etc/cloud/cloud.cfg.d/99-cloudpack.cfg
 locale: en_US.UTF-8
 datasource_list: [Ec2]
@@ -20,6 +17,9 @@ mounts:
 EOT
 sed -i -e "s/^ZONE/#ZONE/g" -e "1i ZONE=\"Asia/Tokyo\"" /etc/sysconfig/clock
 /usr/sbin/tzdata-update
+rpm -ivh /tmp/ec2-net-utils-0.4-1.24.el6cloudpack.noarch.rpm
+rpm -ivh /tmp/ec2-utils-0.4-1.24.el6cloudpack.noarch.rpm
+yum update -y
 yum install -y bc strace mtr dstat sysstat tcpdump irqbalance
 yum install -y --enablerepo=epel chrony jq htop
 chkconfig chronyd on
@@ -27,6 +27,9 @@ chkconfig irqbalance on
 chkconfig sysstat on
 chkconfig lvm2-monitor off
 cp /tmp/rpsxps /etc/init.d/ && chmod ugo+x /etc/init.d/rpsxps && chkconfig rpsxps on
+cat << EOT >> /etc/sysconfig/init
+ulimit -n 524288
+EOT
 cat << EOT >> /etc/sysctl.conf
 # allow testing with buffers up to 64MB 
 net.core.rmem_max = 67108864 
@@ -56,9 +59,6 @@ cat << EOT >> /etc/security/limits.d/99-cloudpack.conf
 * soft nofile 65536
 * hard nofile 65536
 EOT
-cat << EOT >> /etc/sysconfig/init
-ulimit -n 524288
-EOT
 cat << EOT >> /etc/profile.d/motd.sh
 CURL_CMD="curl --max-time 2 --connect-timeout 2 -s"
 echo "####"
@@ -82,6 +82,5 @@ cat << EOT >> /etc/profile.d/bash_completion.sh
 HISTTIMEFORMAT='%Y-%m-%dT%T%z '
 HISTSIZE=1000000
 EOT
-
 mv /etc/sysconfig/network-scripts/vmimport.ifcfg-lo /etc/sysconfig/network-scripts/ifcfg-lo
 rm /etc/sysconfig/network-scripts/ifcfg-eth0.vmimport
