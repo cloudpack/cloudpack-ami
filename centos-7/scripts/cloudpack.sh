@@ -1,4 +1,3 @@
-sed -i.bak 's@inet_protocols(*)=(.*)@inet_protocols = ipv4@g' /etc/postfix.conf
 cat << EOT >> /etc/cloud/cloud.cfg.d/99-cloudpack.cfg
 locale: en_US.UTF-8
 datasource_list: [Ec2]
@@ -17,6 +16,7 @@ mounts:
   - [ /dev/xvdc, /mnt/ephemeral/1 ]
 EOT
 timedatectl set-timezone Asia/Tokyo
+sed -i.bak 's@inet_protocols(*)=(.*)@inet_protocols = ipv4@g' /etc/postfix.conf
 yum install -y bc strace mtr dstat sysstat tcpdump irqbalance
 yum install -y --enablerepo=epel chrony jq htop
 systemctl enable chronyd.service
@@ -26,6 +26,7 @@ systemctl enable NetworkManager-wait-online.service
 systemctl disable lvm2-monitor.service
 systemctl disable kdump.service
 dracut --force --add growroot /boot/initramfs-$(uname -r).img
+cp /tmp/rpsxps /etc/init.d/ && chmod ugo+x /etc/init.d/rpsxps && chkconfig rpsxps on
 cat << EOT >> /etc/sysctl.conf
 # allow testing with buffers up to 64MB 
 net.core.rmem_max = 67108864 
