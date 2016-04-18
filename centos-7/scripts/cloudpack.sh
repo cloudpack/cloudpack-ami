@@ -1,8 +1,3 @@
-yum -y install epel-release
-yum -y update
-yum -y install cloud-init
-sed -i.bak 's@\(.*\)name: \(.*\)@\1name: cloudpack@g' /etc/cloud/cloud.cfg
-sed -i.bak 's@\(.*\)/mnt\(.*\)@#\1/mnt\2@g' /etc/fstab
 sed -i.bak 's@inet_protocols(*)=(.*)@inet_protocols = ipv4@g' /etc/postfix.conf
 cat << EOT >> /etc/cloud/cloud.cfg.d/99-cloudpack.cfg
 locale: en_US.UTF-8
@@ -22,9 +17,8 @@ mounts:
   - [ /dev/xvdc, /mnt/ephemeral/1 ]
 EOT
 timedatectl set-timezone Asia/Tokyo
-yum install -y htop strace mtr dstat sysstat tcpdump chrony jq python-pip irqbalance cloud-utils cloud-utils-growpart lsof dracut-modules-growroot
-pip install -U urllib3 pip
-pip install -U awscli
+yum install -y bc strace mtr dstat sysstat tcpdump irqbalance
+yum install -y --enablerepo=epel chrony jq htop
 systemctl enable chronyd.service
 systemctl enable irqbalance.service
 systemctl enable sysstat.service
