@@ -9,3 +9,6 @@ sh /mnt/VBoxLinuxAdditions.run
 umount /mnt
 rm -rf /home/cloudpack/VBoxGuestAdditions_*.iso
 rm /var/log/vboxadd-install.log
+yum -y clean all
+rm -rf /tmp/rubygems-*
+rm /var/log/vboxadd-install.log

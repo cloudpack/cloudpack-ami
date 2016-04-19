@@ -14,6 +14,9 @@
     "associate_public_ip_address": true,
     "instance_type": "t2.nano",
     "ssh_username": "cloudpack",
+    "enhanced_networking": true,
+    "ami_groups": "all",
+    "ami_description": "cloudpack-ami CentOS6 {{timestamp}}",
     "ami_name": "cloudpack-ami CentOS6 {{timestamp}}"
   }],
   "provisioners": [
@@ -23,28 +26,23 @@
       "destination": "/tmp/rpsxps"
     },
     {
-      "type": "file",
-      "source": "files/ec2-net-utils-0.4-1.24.el6cloudpack.noarch.rpm",
-      "destination": "/tmp/ec2-net-utils-0.4-1.24.el6cloudpack.noarch.rpm"
-    },
-    {
-      "type": "file",
-      "source": "files/ec2-utils-0.4-1.24.el6cloudpack.noarch.rpm",
-      "destination": "/tmp/ec2-utils-0.4-1.24.el6cloudpack.noarch.rpm"
-    },
-    {
       "type": "shell",
       "execute_command": "echo 'cloudpack'|sudo -S sh '{{.Path}}'",
-      "scripts": [
-        "scripts/repo-mongodb-org-3.0.sh",
-	"scripts/repo-neo4j.sh",
-	"scripts/repo-nginx.sh",
-	"scripts/repo-postgresql.sh",
-	"scripts/repo-mysql.sh",
-	"scripts/repo-riak.sh",
-	"scripts/cloudpack.sh",
-        "scripts/cleanup.sh"
-      ]
+      "override" : {
+        "amazon-ebs": {
+          "scripts": [
+            "scripts/sleep.sh",
+            "scripts/repo-mongodb-org-3.0.sh",
+            "scripts/repo-neo4j.sh",
+            "scripts/repo-nginx.sh",
+            "scripts/repo-postgresql.sh",
+            "scripts/repo-mysql.sh",
+            "scripts/repo-riak.sh",
+            "scripts/cloudpack.sh",
+            "scripts/cleanup.sh"
+          ]
+        }
+      }
     }
   ]
 }

@@ -18,8 +18,6 @@ sed -i.bak 's@\(.*\)name: \(.*\)@\1name: cloudpack@g' /etc/cloud/cloud.cfg
 sed -i.bak 's@\(.*\)/mnt\(.*\)@#\1/mnt\2@g' /etc/fstab
 dracut --force --add growroot /boot/initramfs-$(uname -r).img
 
-rpm -Uvh --force /tmp/bash-4.1.2-33.el6.1cloudpack.x86_64.rpm
-
 # http://blog.father.gedow.net/2016/03/15/enhanced-networking/ を参照　多謝
 # ixgbevfソースのダウンロード（dkmsの都合で /usr/src である必要アリ）
 cd /usr/src
@@ -46,7 +44,3 @@ dkms install -m ixgbevf -v 3.1.2
  
 # モジュールが更新されたのを確認
 modinfo ixgbevf
-
-cat << EOT >> /etc/yum.conf
-exclude=kernel* bash*
-EOT
