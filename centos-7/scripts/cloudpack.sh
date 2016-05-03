@@ -1,4 +1,4 @@
-cat << EOT >> /etc/cloud/cloud.cfg.d/99-cloudpack.cfg
+tat << EOT >> /etc/cloud/cloud.cfg.d/99-cloudpack.cfg
 locale: en_US.UTF-8
 datasource_list: [Ec2]
 datasource:
@@ -33,11 +33,12 @@ systemctl enable sysstat.service
 systemctl enable NetworkManager-wait-online.service
 systemctl disable lvm2-monitor.service
 systemctl disable kdump.service
+systemctl disable wpa_supplicant.service
 #rpm -qa kernel | sed 's/^kernel-//'  | xargs -I {} dracut -f /boot/initramfs-{}.img {} 1>/dev/null 2>1
 cp /tmp/rpsxps /etc/init.d/ && chmod ugo+x /etc/init.d/rpsxps && chkconfig rpsxps on
-[ -f vmimport.ifcfg-lo ] && mv /etc/sysconfig/network-scripts/vmimport.ifcfg-lo /etc/sysconfig/network-scripts/ifcfg-lo
-[ -f vmimport.ifcfg-* ] && rm /etc/sysconfig/network-scripts/vmimport.ifcfg-*
 sed -i.bak -e 's/\(.*\)linux16\(.*\)/\1linux16\2 maxcpus=18/g' /boot/grub2/grub.cfg
+grep net.ifnames /etc/default/grub || sed -i '/^GRUB_CMDLINE_LINUX/s/\"$/ net.ifnames=0 biosdevname=0\"/g' /etc/default/grub
+grub2-mkconfig -o /boot/grub2/grub.cfg
 
 cat << EOT >> /etc/sysctl.conf
 # allow testing with buffers up to 64MB 
@@ -94,3 +95,9 @@ cat << EOT >> /etc/profile.d/bash_completion.sh
 HISTTIMEFORMAT='%Y-%m-%dT%T%z '
 HISTSIZE=1000000
 EOT
+cd /etc/sysconfig/network-scripts
+ls vmimport.ifcfg-* && rm vmimport.ifcfg-*
+#[ -f vmimport.ifcfg-lo ] && mv vmimport.ifcfg-lo ifcfg-lo
+#[ -f vmimport.ifcfg-* ] && rm vmimport.ifcfg-*
+#[ -f ifcfg-en* ] && rm ifcfg-en*
+#[ -f route-* ] && rm route-*
