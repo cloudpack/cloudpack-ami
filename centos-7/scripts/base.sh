@@ -8,7 +8,6 @@ yum -y install --enablerepo=epel \
 	cloud-utils \
 	cloud-utils-growpart \
 	lsof \
-	dracut-modules-growroot \
 	dkms \
 	python-pip
 pip install -U urllib3 pip
