@@ -21,7 +21,7 @@ exclude=bash*
 EOT
 
 timedatectl set-timezone Asia/Tokyo
-sed -i.bak 's@inet_protocols(*)=(.*)@inet_protocols = ipv4@g' /etc/postfix/main.cf
+sed -i -e 's/inet_protocols.*=.*/inet_protocols = ipv4/g' /etc/postfix/main.cf
 yum install -y bc strace mtr dstat sysstat tcpdump irqbalance
 yum install -y --enablerepo=epel chrony jq htop
 rpm -Uvh --force /tmp/bash-4.2.46-19cloudpack.el7.centos.x86_64.rpm
@@ -33,11 +33,11 @@ systemctl enable sysstat.service
 systemctl enable NetworkManager-wait-online.service
 systemctl disable lvm2-monitor.service
 systemctl disable kdump.service
-rpm -qa kernel | sed 's/^kernel-//'  | xargs -I {} dracut -f /boot/initramfs-{}.img {} 1>/dev/null 2>1
+#rpm -qa kernel | sed 's/^kernel-//'  | xargs -I {} dracut -f /boot/initramfs-{}.img {} 1>/dev/null 2>1
 cp /tmp/rpsxps /etc/init.d/ && chmod ugo+x /etc/init.d/rpsxps && chkconfig rpsxps on
 [ -f vmimport.ifcfg-lo ] && mv /etc/sysconfig/network-scripts/vmimport.ifcfg-lo /etc/sysconfig/network-scripts/ifcfg-lo
 [ -f vmimport.ifcfg-* ] && rm /etc/sysconfig/network-scripts/vmimport.ifcfg-*
-sed -i -e 's/\(.*\)kernel\(.*\)/\1kernel\2 maxcpus=18/g' /boot/grub/menu.lst
+sed -i.bak -e 's/\(.*\)linux16\(.*\)/\1linux16\2 maxcpus=18/g' /boot/grub2/grub.cfg
 
 cat << EOT >> /etc/sysctl.conf
 # allow testing with buffers up to 64MB 
