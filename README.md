@@ -32,7 +32,7 @@ https://github.com/shiguredo/packer-templates こちらを大いに参考とさ�
 ```
 cd %OSNAME%
 ./iso2ami.sh -B %YOUR_S3_BUCKET_NAME%
-packer build -var 'aws_source_ami=%AMI_ID%' build
+packer build -var 'aws_source_ami=%AMI_ID%' ami.json
 ```
 
 ### 必要な要素
