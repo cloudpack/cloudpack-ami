@@ -35,6 +35,9 @@ systemctl disable lvm2-monitor.service
 systemctl disable kdump.service
 dracut --force --add growroot /boot/initramfs-$(uname -r).img
 cp /tmp/rpsxps /etc/init.d/ && chmod ugo+x /etc/init.d/rpsxps && chkconfig rpsxps on
+[ -f vmimport.ifcfg-lo ] && mv /etc/sysconfig/network-scripts/vmimport.ifcfg-lo /etc/sysconfig/network-scripts/ifcfg-lo
+[ -f vmimport.ifcfg-* ] && rm /etc/sysconfig/network-scripts/vmimport.ifcfg-*
+sed  's:^\(NM_CONTROLLED=.*\):#\1:g' /etc/sysconfig/network-scripts/ifcfg-eth0
 
 cat << EOT >> /etc/sysctl.conf
 # allow testing with buffers up to 64MB 

@@ -21,6 +21,8 @@ dracut --force --add growroot /boot/initramfs-$(uname -r).img
 systemctl enable NetworkManager-wait-online.service
 systemctl disable wpa_supplicant.service
 systemctl disable firewalld.service
+systemctl disable kdump.service
+systemctl disable sendmail.service
 
 # http://blog.father.gedow.net/2016/03/15/enhanced-networking/ を参照　多謝
 # ixgbevfソースのダウンロード（dkmsの都合で /usr/src である必要アリ）
