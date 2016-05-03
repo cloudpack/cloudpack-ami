@@ -1,4 +1,4 @@
-tat << EOT >> /etc/cloud/cloud.cfg.d/99-cloudpack.cfg
+cat << EOT >> /etc/cloud/cloud.cfg.d/99-cloudpack.cfg
 locale: en_US.UTF-8
 datasource_list: [Ec2]
 datasource:
@@ -33,7 +33,6 @@ systemctl enable sysstat.service
 systemctl enable NetworkManager-wait-online.service
 systemctl disable lvm2-monitor.service
 systemctl disable kdump.service
-systemctl disable wpa_supplicant.service
 #rpm -qa kernel | sed 's/^kernel-//'  | xargs -I {} dracut -f /boot/initramfs-{}.img {} 1>/dev/null 2>1
 cp /tmp/rpsxps /etc/init.d/ && chmod ugo+x /etc/init.d/rpsxps && chkconfig rpsxps on
 sed -i.bak -e 's/\(.*\)linux16\(.*\)/\1linux16\2 maxcpus=18/g' /boot/grub2/grub.cfg
@@ -66,6 +65,8 @@ net.ipv6.conf.all.disable_ipv6 = 1
 net.ipv6.conf.default.disable_ipv6 = 1
 EOT
 
+echo "net.ipv6.conf.all.disable_ipv6 = 1" > /etc/sysctl.d/disableipv6.conf
+
 cat << EOT >> /etc/security/limits.d/99-cloudpack.conf
 * soft nofile 65536
 * hard nofile 65536
@@ -97,7 +98,3 @@ HISTSIZE=1000000
 EOT
 cd /etc/sysconfig/network-scripts
 ls vmimport.ifcfg-* && rm vmimport.ifcfg-*
-#[ -f vmimport.ifcfg-lo ] && mv vmimport.ifcfg-lo ifcfg-lo
-#[ -f vmimport.ifcfg-* ] && rm vmimport.ifcfg-*
-#[ -f ifcfg-en* ] && rm ifcfg-en*
-#[ -f route-* ] && rm route-*

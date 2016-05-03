@@ -18,7 +18,6 @@ sed -i.bak 's@\(.*\)/mnt\(.*\)@#\1/mnt\2@g' /etc/fstab
 dracut --force --add growroot /boot/initramfs-$(uname -r).img
 
 systemctl enable NetworkManager-wait-online.service
-systemctl disable wpa_supplicant.service
 systemctl disable firewalld.service
 systemctl disable kdump.service
 systemctl disable sendmail.service
