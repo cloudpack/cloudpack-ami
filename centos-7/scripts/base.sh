@@ -18,7 +18,9 @@ sed -i.bak 's@\(.*\)name: \(.*\)@\1name: cloudpack@g' /etc/cloud/cloud.cfg
 sed -i.bak 's@\(.*\)/mnt\(.*\)@#\1/mnt\2@g' /etc/fstab
 dracut --force --add growroot /boot/initramfs-$(uname -r).img
 
-rpm -Uvh --force /tmp/bash-4.2.46-19cloudpack.el7.centos.x86_64.rpm
+systemctl enable NetworkManager-wait-online.service
+systemctl disable wpa_supplicant.service
+systemctl disable firewalld.service
 
 # http://blog.father.gedow.net/2016/03/15/enhanced-networking/ を参照　多謝
 # ixgbevfソースのダウンロード（dkmsの都合で /usr/src である必要アリ）
@@ -46,7 +48,3 @@ dkms install -m ixgbevf -v 3.1.2
  
 # モジュールが更新されたのを確認
 modinfo ixgbevf
-
-cat << EOT >> /etc/yum.conf
-exclude=kernel* bash*
-EOT

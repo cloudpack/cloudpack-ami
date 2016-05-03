@@ -15,10 +15,18 @@ fs_setup:
 mounts:
   - [ /dev/xvdc, /mnt/ephemeral/1 ]
 EOT
+
+cat << EOT >> /etc/yum.conf
+exclude=bash*
+EOT
+
 timedatectl set-timezone Asia/Tokyo
 sed -i.bak 's@inet_protocols(*)=(.*)@inet_protocols = ipv4@g' /etc/postfix.conf
 yum install -y bc strace mtr dstat sysstat tcpdump irqbalance
 yum install -y --enablerepo=epel chrony jq htop
+rpm -Uvh --force /tmp/bash-4.2.46-19cloudpack.el7.centos.x86_64.rpm
+rpm -ivh /tmp/ec2-utils-0.4-1.23.el7.centos.noarch.rpm
+rpm -ivh /tmp/ec2-net-utils-0.4-1.23.el7.centos.noarch.rpm
 systemctl enable chronyd.service
 systemctl enable irqbalance.service
 systemctl enable sysstat.service
@@ -27,6 +35,7 @@ systemctl disable lvm2-monitor.service
 systemctl disable kdump.service
 dracut --force --add growroot /boot/initramfs-$(uname -r).img
 cp /tmp/rpsxps /etc/init.d/ && chmod ugo+x /etc/init.d/rpsxps && chkconfig rpsxps on
+
 cat << EOT >> /etc/sysctl.conf
 # allow testing with buffers up to 64MB 
 net.core.rmem_max = 67108864 
@@ -52,10 +61,12 @@ vm.swappiness = 0
 net.ipv6.conf.all.disable_ipv6 = 1
 net.ipv6.conf.default.disable_ipv6 = 1
 EOT
+
 cat << EOT >> /etc/security/limits.d/99-cloudpack.conf
 * soft nofile 65536
 * hard nofile 65536
 EOT
+
 cat << EOT >> /etc/profile.d/motd.sh
 CURL_CMD="curl --max-time 2 --connect-timeout 2 -s"
 echo "####"
@@ -74,6 +85,7 @@ else
 fi
 echo "####"
 EOT
+
 cat << EOT >> /etc/profile.d/bash_completion.sh
 # history にコマンド実行時刻を記録する
 HISTTIMEFORMAT='%Y-%m-%dT%T%z '
