@@ -1,3 +1,4 @@
+yum update -y
 cat << EOT >> /etc/cloud/cloud.cfg.d/99-cloudpack.cfg
 locale: en_US.UTF-8
 datasource_list: [Ec2]
@@ -33,11 +34,14 @@ systemctl enable sysstat.service
 systemctl enable NetworkManager-wait-online.service
 systemctl disable lvm2-monitor.service
 systemctl disable kdump.service
+systemctl disable wpa_supplicant.service
+systemctl disable firewalld.service
+systemctl disable tuned.service
 #rpm -qa kernel | sed 's/^kernel-//'  | xargs -I {} dracut -f /boot/initramfs-{}.img {} 1>/dev/null 2>1
-cp /tmp/rpsxps /etc/init.d/ && chmod ugo+x /etc/init.d/rpsxps && chkconfig rpsxps on
 sed -i.bak -e 's/\(.*\)linux16\(.*\)/\1linux16\2 maxcpus=18/g' /boot/grub2/grub.cfg
 grep net.ifnames /etc/default/grub || sed -i '/^GRUB_CMDLINE_LINUX/s/\"$/ net.ifnames=0 biosdevname=0 ipv6.disable=1\"/g' /etc/default/grub
 grub2-mkconfig -o /boot/grub2/grub.cfg
+cp /tmp/rpsxps /etc/init.d/ && chmod ugo+x /etc/init.d/rpsxps && chkconfig rpsxps on
 
 cat << EOT >> /etc/sysctl.conf
 # allow testing with buffers up to 64MB 
@@ -63,16 +67,6 @@ fs.aio-max-nr = 1048576
 vm.swappiness = 0
 net.ipv6.conf.all.disable_ipv6 = 1
 net.ipv6.conf.default.disable_ipv6 = 1
-EOT
-
-cat << EOT >> /etc/sysctl.d/disableipv6.conf
-net.ipv6.conf.all.disable_ipv6 = 1
-net.ipv6.conf.default.disable_ipv6 = 1
-EOT
-
-cat << EOT >> /etc/sysconfig/network
-IPV6INIT=no
-DHCPV6C=no
 EOT
 
 cat << EOT >> /etc/security/limits.d/99-cloudpack.conf
@@ -104,5 +98,16 @@ cat << EOT >> /etc/profile.d/bash_completion.sh
 HISTTIMEFORMAT='%Y-%m-%dT%T%z '
 HISTSIZE=1000000
 EOT
+
+cat << EOT >> /etc/sysconfig/network
+IPV6INIT=no
+DHCPV6C=no
+EOT
+
+cat << EOT >> /etc/sysctl.d/disableipv6.conf
+net.ipv6.conf.all.disable_ipv6 = 1
+net.ipv6.conf.default.disable_ipv6 = 1
+EOT
+
 cd /etc/sysconfig/network-scripts
 ls vmimport.ifcfg-* && rm vmimport.ifcfg-*
