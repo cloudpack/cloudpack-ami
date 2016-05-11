@@ -31,7 +31,13 @@ https://github.com/shiguredo/packer-templates こちらを大いに参考とさ�
 
 ```
 cd %OSNAME%
-./iso2ami.sh -B %YOUR_S3_BUCKET_NAME%
+./iso2ami.sh -B %YOUR_S3_BUCKET_NAME% -P %PREFIX%
+```
+
+しばらくするとAMIがimportされてAMI IDが発行されます。
+そのAMI_IDを用いて最終調整を行います。
+
+```
 packer build -var 'aws_source_ami=%AMI_ID%' ami.json
 ```
 
@@ -48,5 +54,4 @@ packer build -var 'aws_source_ami=%AMI_ID%' ami.json
 
 ## ToDo
 
-- bash `-DSYSLOG_HISTORY` の実装(CentOS7)
-- ec2-toolsの実装(CentOS7)
+- 今のところなし
