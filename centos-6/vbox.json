@@ -10,8 +10,8 @@
       "guest_os_type": "RedHat_64",
       "http_directory": "http",
       "iso_checksum": "9d3fec5897be6b3fed4d3dda80b8fa7bb62c616bbfd4bdcd27295ca9b764f498",
-      "iso_checksum_type": "sha256",
       "iso_url": "http://ftp.iij.ad.jp/pub/linux/centos/6.7/isos/x86_64/CentOS-6.7-x86_64-minimal.iso",
+      "iso_checksum_type": "sha256",
       "ssh_username": "cloudpack",
       "ssh_password": "cloudpack",
       "ssh_port": 22,
@@ -37,21 +37,6 @@
     }
   ],
   "provisioners": [
-    {
-      "type": "file",
-      "source": "files/bash-4.1.2-33.el6.1cloudpack.x86_64.rpm",
-      "destination": "/tmp/bash-4.1.2-33.el6.1cloudpack.x86_64.rpm"
-    },
-    {
-      "type": "file",
-      "source": "files/ec2-net-utils-0.4-1.24.el6cloudpack.noarch.rpm",
-      "destination": "/tmp/ec2-net-utils-0.4-1.24.el6cloudpack.noarch.rpm"
-    },
-    {
-      "type": "file",
-      "source": "files/ec2-utils-0.4-1.24.el6cloudpack.noarch.rpm",
-      "destination": "/tmp/ec2-utils-0.4-1.24.el6cloudpack.noarch.rpm"
-    },
     {
       "type": "shell",
       "execute_command": "echo 'cloudpack'|sudo -S sh '{{.Path}}'",

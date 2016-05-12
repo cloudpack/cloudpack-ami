@@ -21,8 +21,6 @@ cat << EOT >> /etc/yum.conf
 exclude=bash*
 EOT
 
-sed -i -e "s/^ZONE/#ZONE/g" -e "1i ZONE=\"Asia/Tokyo\"" /etc/sysconfig/clock
-/usr/sbin/tzdata-update
 yum install -y bc strace mtr dstat sysstat tcpdump irqbalance
 yum install -y --enablerepo=epel chrony jq htop
 rpm -Uvh --force /tmp/bash-4.1.2-33.el6.1cloudpack.x86_64.rpm
@@ -39,6 +37,9 @@ chkconfig lvm2-monitor off
 cat << EOT >> /etc/sysconfig/init
 ulimit -n 524288
 EOT
+
+sed -i -e "s/^ZONE/#ZONE/g" -e "1i ZONE=\"Asia/Tokyo\"" /etc/sysconfig/clock
+/usr/sbin/tzdata-update
 
 cp /tmp/rpsxps /etc/init.d/ && chmod ugo+x /etc/init.d/rpsxps && chkconfig rpsxps on
 
