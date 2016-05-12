@@ -21,8 +21,6 @@ cat << EOT >> /etc/yum.conf
 exclude=bash*
 EOT
 
-timedatectl set-timezone Asia/Tokyo
-sed -i -e 's/inet_protocols.*=.*/inet_protocols = ipv4/g' /etc/postfix/main.cf
 yum install -y bc strace mtr dstat sysstat tcpdump irqbalance
 yum install -y --enablerepo=epel chrony jq htop
 rpm -Uvh --force /tmp/bash-4.2.46-19cloudpack.el7.centos.x86_64.rpm
@@ -41,6 +39,22 @@ systemctl disable tuned.service
 sed -i.bak -e 's/\(.*\)linux16\(.*\)/\1linux16\2 maxcpus=18/g' /boot/grub2/grub.cfg
 grep net.ifnames /etc/default/grub || sed -i '/^GRUB_CMDLINE_LINUX/s/\"$/ net.ifnames=0 biosdevname=0 ipv6.disable=1\"/g' /etc/default/grub
 grub2-mkconfig -o /boot/grub2/grub.cfg
+timedatectl set-timezone Asia/Tokyo
+sed -i -e 's/inet_protocols.*=.*/inet_protocols = ipv4/g' /etc/postfix/main.cf
+
+cat << EOT >> /etc/sysconfig/network
+IPV6INIT=no
+DHCPV6C=no
+EOT
+
+cat << EOT >> /etc/sysctl.d/disableipv6.conf
+net.ipv6.conf.all.disable_ipv6 = 1
+net.ipv6.conf.default.disable_ipv6 = 1
+EOT
+
+cd /etc/sysconfig/network-scripts
+ls vmimport.ifcfg-* && rm vmimport.ifcfg-*
+
 cp /tmp/rpsxps /etc/init.d/ && chmod ugo+x /etc/init.d/rpsxps && chkconfig rpsxps on
 
 cat << EOT >> /etc/sysctl.conf
@@ -98,16 +112,3 @@ cat << EOT >> /etc/profile.d/bash_completion.sh
 HISTTIMEFORMAT='%Y-%m-%dT%T%z '
 HISTSIZE=1000000
 EOT
-
-cat << EOT >> /etc/sysconfig/network
-IPV6INIT=no
-DHCPV6C=no
-EOT
-
-cat << EOT >> /etc/sysctl.d/disableipv6.conf
-net.ipv6.conf.all.disable_ipv6 = 1
-net.ipv6.conf.default.disable_ipv6 = 1
-EOT
-
-cd /etc/sysconfig/network-scripts
-ls vmimport.ifcfg-* && rm vmimport.ifcfg-*
