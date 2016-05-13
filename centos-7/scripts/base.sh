@@ -15,7 +15,6 @@ pip install -U awscli
 
 sed -i.bak 's@\(.*\)name: \(.*\)@\1name: cloudpack@g' /etc/cloud/cloud.cfg
 sed -i.bak 's@\(.*\)/mnt\(.*\)@#\1/mnt\2@g' /etc/fstab
-dracut --force --add growroot /boot/initramfs-$(uname -r).img
 
 systemctl enable NetworkManager-wait-online.service
 systemctl disable firewalld.service

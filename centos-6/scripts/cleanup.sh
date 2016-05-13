@@ -1,9 +1,12 @@
 # Inspired from http://blog.suz-lab.com/2013/01/amicentos6update.html
-yum clean all
+yum -y clean all
 rm -rf /tmp/*.rpm
 rm -rf /tmp/rpsxps
 rm -f /etc/ssh/ssh_host_*
 rm -rf /var/lib/cloud
+rm -rf /home/cloudpack/VBoxGuestAdditions_*.iso
+rm /var/log/vboxadd-install.log
+rm -rf /tmp/rubygems-*
 cd /var/log
 ls -F /var/log | grep -v / | xargs -L1 cp /dev/null
 find /var/log/ -type f -name \*log | xargs -L1 cp /dev/null
