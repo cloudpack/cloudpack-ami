@@ -6,6 +6,8 @@
 | CentOS7 | cloudpack-ami CentOS7 1463144846 | ami-eba3458a |
 | CentOS6 | cloudpack-ami CentOS6 1463136462 | ami-68a24409 |
 
+いずれもログインユーザーは `cloudpack` です。
+
 ## cloudpack-amiとは何か
 
 ISOから素の状態に近いAMIをフルスクラッチで作成します。
