@@ -22,7 +22,7 @@ exclude=bash*
 EOT
 
 yum install -y bc strace mtr dstat sysstat tcpdump irqbalance
-yum install -y --enablerepo=epel chrony jq htop
+yum install -y --enablerepo=epel chrony jq htop nc
 rpm -Uvh --force /tmp/bash-4.1.2-33.el6.1cloudpack.x86_64.rpm
 rpm -ivh /tmp/ec2-net-utils-0.4-1.24.el6cloudpack.noarch.rpm
 rpm -ivh /tmp/ec2-utils-0.4-1.24.el6cloudpack.noarch.rpm
