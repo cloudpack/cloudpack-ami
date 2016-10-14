@@ -21,7 +21,7 @@ dracut --force --add growroot /boot/initramfs-$(uname -r).img
 # http://blog.father.gedow.net/2016/03/15/enhanced-networking/ を参照　多謝
 # ixgbevfソースのダウンロード（dkmsの都合で /usr/src である必要アリ）
 cd /usr/src
-curl -O -L https://sourceforge.net/projects/e1000/files/ixgbevf%20stable/3.2.2/ixgbevf-3.2.2.tar.gz
+curl -s -O -L https://sourceforge.net/projects/e1000/files/ixgbevf%20stable/3.2.2/ixgbevf-3.2.2.tar.gz
 tar xzf ixgbevf-3.2.2.tar.gz
 cd ixgbevf-3.2.2
  
