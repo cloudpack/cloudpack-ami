@@ -42,6 +42,23 @@ grub2-mkconfig -o /boot/grub2/grub.cfg
 timedatectl set-timezone Asia/Tokyo
 sed -i -e 's/inet_protocols.*=.*/inet_protocols = ipv4/g' /etc/postfix/main.cf
 
+[ -f vmimport.ifcfg-lo ] && mv /etc/sysconfig/network-scripts/vmimport.ifcfg-lo /etc/sysconfig/network-scripts/ifcfg-lo
+[ -f ifcfg-eth0.vmimport ] && rm /etc/sysconfig/network-scripts/ifcfg-eth0.vmimport
+[ -f /etc/udev/rules.d/70-persistent-net.rules ] && rm /etc/udev/rules.d/70-persistent-net.rules
+touch /etc/udev/rules.d/70-persistent-net.rules
+[ -f /lib/udev/rules.d/75-persistent-net-generator.rules ] && sed -i.bak 's:\(DRIVERS==\"?\*\",\):#\1:g' /lib/udev/rules.d/75-persistent-net-generator.rules
+touch /etc/udev/rules.d/70-persistent-net.rules
+
+cd /etc/sysconfig/network-scripts
+ls vmimport.ifcfg-* && rm vmimport.ifcfg-*
+cd /etc/udev/rules.d
+ls *vmimport && rm *vmimport
+
+dkms remove -m ixgbevf/3.2.2 --all
+dkms add -m ixgbevf -v 3.2.2
+dkms build -m ixgbevf -v 3.2.2
+dkms install -m ixgbevf -v 3.2.2
+
 cat << EOT >> /etc/sysconfig/network
 IPV6INIT=no
 DHCPV6C=no
@@ -51,16 +68,6 @@ cat << EOT >> /etc/sysctl.d/disableipv6.conf
 net.ipv6.conf.all.disable_ipv6 = 1
 net.ipv6.conf.default.disable_ipv6 = 1
 EOT
-
-[ -f vmimport.ifcfg-lo ] && mv /etc/sysconfig/network-scripts/vmimport.ifcfg-lo /etc/sysconfig/network-scripts/ifcfg-lo
-[ -f ifcfg-eth0.vmimport ] && rm /etc/sysconfig/network-scripts/ifcfg-eth0.vmimport
-[ -f /etc/udev/rules.d/70-persistent-net.rules ] && rm /etc/udev/rules.d/70-persistent-net.rules
-sed -i.bak 's:\(DRIVERS==\"?\*\",\):#\1:g' /lib/udev/rules.d/75-persistent-net-generator.rules
-
-cd /etc/sysconfig/network-scripts
-ls vmimport.ifcfg-* && rm vmimport.ifcfg-*
-[ -f /etc/udev/rules.d/70-persistent-net.rules ] && rm /etc/udev/rules.d/70-persistent-net.rules
-sed -i.bak 's:\(DRIVERS==\"?\*\",\):#\1:g' /lib/udev/rules.d/75-persistent-net-generator.rules
 
 cp /tmp/rpsxps /etc/init.d/ && chmod ugo+x /etc/init.d/rpsxps && chkconfig rpsxps on
 
