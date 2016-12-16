@@ -21,7 +21,7 @@ cat << EOT >> /etc/yum.conf
 exclude=bash*
 EOT
 
-yum install -y bc strace mtr dstat sysstat tcpdump irqbalance
+yum install -y bc strace mtr dstat sysstat tcpdump irqbalance git tree mlocate
 yum install -y --enablerepo=epel chrony jq htop nc
 rpm -Uvh --force /tmp/bash-4.2.46-19cloudpack.el7.centos.x86_64.rpm
 rpm -ivh /tmp/ec2-utils-0.4-1.23.el7.centos.noarch.rpm
@@ -54,10 +54,10 @@ ls vmimport.ifcfg-* && rm vmimport.ifcfg-*
 cd /etc/udev/rules.d
 ls *vmimport && rm *vmimport
 
-dkms remove -m ixgbevf/3.2.2 --all
-dkms add -m ixgbevf -v 3.2.2
-dkms build -m ixgbevf -v 3.2.2
-dkms install -m ixgbevf -v 3.2.2
+dkms remove -m ixgbevf/3.3.2 --all
+dkms add -m ixgbevf -v 3.3.2
+dkms build -m ixgbevf -v 3.3.2
+dkms install -m ixgbevf -v 3.3.2
 
 cat << EOT >> /etc/sysconfig/network
 IPV6INIT=no

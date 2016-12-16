@@ -21,7 +21,7 @@ cat << EOT >> /etc/yum.conf
 exclude=bash*
 EOT
 
-yum install -y bc strace mtr dstat sysstat tcpdump irqbalance
+yum install -y bc strace mtr dstat sysstat tcpdump irqbalance git tree mlocate
 yum install -y --enablerepo=epel chrony jq htop nc
 rpm -Uvh --force /tmp/bash-4.1.2-33.el6.1cloudpack.x86_64.rpm
 rpm -ivh /tmp/ec2-net-utils-0.4-1.24.el6cloudpack.noarch.rpm
@@ -44,10 +44,10 @@ cd /etc/udev/rules.d
 ls *vmimport && rm *vmimport
 sed -i.bak -e "s@.*RULES_FILE=.*@RULES_FILE='/dev/null'@g" /lib/udev/write_net_rules
 
-dkms remove -m ixgbevf/3.2.2 --all
-dkms add -m ixgbevf -v 3.2.2
-dkms build -m ixgbevf -v 3.2.2
-dkms install -m ixgbevf -v 3.2.2
+dkms remove -m ixgbevf/3.3.2 --all
+dkms add -m ixgbevf -v 3.3.2
+dkms build -m ixgbevf -v 3.3.2
+dkms install -m ixgbevf -v 3.3.2
 
 cat << EOT >> /etc/sysconfig/init
 ulimit -n 524288
