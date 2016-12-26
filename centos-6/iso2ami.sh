@@ -56,4 +56,5 @@ cat << EOT > vmimport.json
 	"Platform": "Linux"
 }
 EOT
-aws ec2 import-image --description "${DESCRIPTION}" --cli-input-json file://./vmimport.json --no-dry-run
+ImportTask=$(aws ec2 import-image --description "${DESCRIPTION}" --cli-input-json file://./vmimport.json --no-dry-run)
+echo ${ImportTask}

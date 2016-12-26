@@ -31,6 +31,10 @@ chkconfig irqbalance on
 chkconfig sysstat on
 chkconfig lvm2-monitor off
 
+echo "leapsecmode slew" >> /etc/chrony.conf
+echo "maxslewrate 1000" >> /etc/chrony.conf
+echo "smoothtime 400 0.001 leaponly" >> /etc/chrony.conf
+
 [ -f vmimport.ifcfg-lo ] && mv /etc/sysconfig/network-scripts/vmimport.ifcfg-lo /etc/sysconfig/network-scripts/ifcfg-lo
 [ -f ifcfg-eth0.vmimport ] && rm /etc/sysconfig/network-scripts/ifcfg-eth0.vmimport
 [ -f /etc/udev/rules.d/70-persistent-net.rules ] && rm /etc/udev/rules.d/70-persistent-net.rules

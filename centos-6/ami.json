@@ -22,6 +22,21 @@
   "provisioners": [
     {
       "type": "file",
+      "source": "files/bash-4.1.2-33.el6.1cloudpack.x86_64.rpm",
+      "destination": "/tmp/bash-4.1.2-33.el6.1cloudpack.x86_64.rpm"
+    },
+    {
+      "type": "file",
+      "source": "files/ec2-net-utils-0.4-1.24.el6cloudpack.noarch.rpm",
+      "destination": "/tmp/ec2-net-utils-0.4-1.24.el6cloudpack.noarch.rpm"
+    },
+    {
+      "type": "file",
+      "source": "files/ec2-utils-0.4-1.24.el6cloudpack.noarch.rpm",
+      "destination": "/tmp/ec2-utils-0.4-1.24.el6cloudpack.noarch.rpm"
+    },
+    {
+      "type": "file",
       "source": "files/rpsxps",
       "destination": "/tmp/rpsxps"
     },
