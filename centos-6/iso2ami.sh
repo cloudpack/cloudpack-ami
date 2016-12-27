@@ -57,4 +57,5 @@ cat << EOT > vmimport.json
 }
 EOT
 ImportTask=$(aws ec2 import-image --description "${DESCRIPTION}" --cli-input-json file://./vmimport.json --no-dry-run)
-echo ${ImportTask}
+echo ${ImportTask} 
+echo "aws ec2 describe-import-image-tasks --import-task-ids "$( echo ${ImportTask} | jq '.ImportTaskId' --raw-output)

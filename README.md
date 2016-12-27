@@ -1,12 +1,12 @@
 # cloudpack-ami
 ## AMIのありか
 
-(2016年12月27日現在)
+(2016年12月28日現在)
 
 | Distribution | 名称 | AMI ID |
 |:---:|:---|:---|
-| CentOS7 | cloudpack-ami CentOS7 1482747581 | ami-2598ed42 |
-| CentOS6 | cloudpack-ami CentOS6 1482767266 | ami-caf683ad |
+| CentOS7 | cloudpack-ami CentOS7 1482855469 | ami-e4770383 |
+| CentOS6 | N/A | N/A |
 
 いずれもログインユーザーは `cloudpack` です。
 
@@ -66,3 +66,10 @@ packer build -var 'aws_source_ami=%AMI_ID%' ami.json
 ## ToDo
 
 - 今のところなし
+
+## 今後のメモ
+
+```
+sed -i.bak -e 's:\(.*\)ixgbevf.conf\(.*\):#\1ixgbenf.conf\2:g' ec2-utils.spec
+rpm --without upstart ec2-utils.spec
+```
