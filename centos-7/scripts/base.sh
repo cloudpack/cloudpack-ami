@@ -16,6 +16,9 @@ pip install -U awscli
 sed -i.bak 's@\(.*\)name: \(.*\)@\1name: cloudpack@g' /etc/cloud/cloud.cfg
 sed -i.bak 's@\(.*\)/mnt\(.*\)@#\1/mnt\2@g' /etc/fstab
 
+sed -i '/^GRUB_CMDLINE_LINUX/s/"$/ net.ifnames=0"/' /etc/default/grub
+grub2-mkconfig -o /boot/grub2/grub.cfg
+
 systemctl enable NetworkManager-wait-online.service
 systemctl disable firewalld.service
 systemctl disable kdump.service
@@ -47,3 +50,4 @@ dkms install -m ixgbevf -v 3.3.2
  
 # モジュールが更新されたのを確認
 modinfo ixgbevf
+rm -rf /tmp/*

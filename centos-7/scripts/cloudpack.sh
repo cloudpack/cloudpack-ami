@@ -24,8 +24,8 @@ EOT
 yum install -y bc strace mtr dstat sysstat tcpdump irqbalance git tree mlocate
 yum install -y --enablerepo=epel chrony jq htop nc
 rpm -Uvh --force /tmp/bash-4.2.46-19cloudpack.el7.centos.x86_64.rpm
-rpm -ivh /tmp/ec2-utils-0.4-1.23.el7.centos.noarch.rpm
-rpm -ivh /tmp/ec2-net-utils-0.4-1.23.el7.centos.noarch.rpm
+rpm -ivh /tmp/ec2-utils-0.5-1.32.el7.centos.noarch.rpm
+rpm -ivh /tmp/ec2-net-utils-0.5-1.32.el7.centos.noarch.rpm
 systemctl enable chronyd.service
 systemctl enable irqbalance.service
 systemctl enable sysstat.service
@@ -51,17 +51,17 @@ echo "smoothtime 400 0.001 leaponly" >> /etc/chrony.conf
 [ -f /etc/udev/rules.d/70-persistent-net.rules ] && rm /etc/udev/rules.d/70-persistent-net.rules
 touch /etc/udev/rules.d/70-persistent-net.rules
 [ -f /lib/udev/rules.d/75-persistent-net-generator.rules ] && sed -i.bak 's:\(DRIVERS==\"?\*\",\):#\1:g' /lib/udev/rules.d/75-persistent-net-generator.rules
-touch /etc/udev/rules.d/70-persistent-net.rules
+touch /etc/udev/rules.d/75-persistent-net-generator.rules
 
 cd /etc/sysconfig/network-scripts
 ls vmimport.ifcfg-* && rm vmimport.ifcfg-*
 cd /etc/udev/rules.d
 ls *vmimport && rm *vmimport
 
-dkms remove -m ixgbevf/3.3.2 --all
-dkms add -m ixgbevf -v 3.3.2
-dkms build -m ixgbevf -v 3.3.2
-dkms install -m ixgbevf -v 3.3.2
+#dkms remove -m ixgbevf/3.3.2 --all
+#dkms add -m ixgbevf -v 3.3.2
+#dkms build -m ixgbevf -v 3.3.2
+#dkms install -m ixgbevf -v 3.3.2
 
 cat << EOT >> /etc/sysconfig/network
 IPV6INIT=no

@@ -3,7 +3,7 @@ yum -y clean all
 rm -rf /tmp/*.rpm
 rm -rf /tmp/rpsxps
 rm -f /etc/ssh/ssh_host_*
-rm -rf /var/lib/cloud
+rm -rf /var/lib/cloud/*
 rm -rf /home/cloudpack/VBoxGuestAdditions*.iso
 rm -rf /home/cloudpack/.vbox_version
 rm /var/log/vboxadd-install.log
