@@ -43,6 +43,7 @@
         "virtualbox-iso": {
           "scripts": [
             "scripts/base.sh",
+            "scripts/dkms.sh",
             "scripts/cleanup.sh"
           ]
         }

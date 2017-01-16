@@ -54,6 +54,8 @@
             "scripts/repo-mysql.sh",
             "scripts/repo-riak.sh",
             "scripts/cloudpack.sh",
+            "scripts/bash-environment.sh",
+            "scripts/dkms.sh",
             "scripts/cleanup.sh"
           ]
         }
