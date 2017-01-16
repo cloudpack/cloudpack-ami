@@ -47,10 +47,7 @@ cd %OSNAME%
 
 しばらくするとAMIがimportされてAMI IDが発行されます。
 そのAMI_IDを用いて最終調整を行います。
-
-```
-packer build -var 'aws_source_ami=%AMI_ID%' ami.json
-```
+AMI_IDを自動認識し、packerにて処理を進めます。
 
 ### 必要な要素
 
