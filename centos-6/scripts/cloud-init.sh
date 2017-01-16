@@ -1,4 +1,4 @@
-yum -y install --enablerepo=epel \
+yum -y install --enablerepo=epel,extras \
 	cloud-init \
 	cloud-utils \
 	cloud-utils-growpart \
@@ -16,7 +16,7 @@ chkconfig --add cloud-final
 
 sed -i.bak 's@\(.*\)name: \(.*\)@\1name: cloudpack@g' /etc/cloud/cloud.cfg
 
-pip install -U urllib3 urllib3-mock apiclient
+#pip install -U urllib3 urllib3-mock apiclient
 
 cat << EOT >> /etc/cloud/cloud.cfg.d/99-cloudpack.cfg
 locale: en_US.UTF-8

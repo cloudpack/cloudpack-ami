@@ -56,6 +56,18 @@ cat << EOT > vmimport.json
 	"Platform": "Linux"
 }
 EOT
-ImportTask=$(aws ec2 import-image --description "${DESCRIPTION}" --cli-input-json file://./vmimport.json --no-dry-run)
-echo ${ImportTask} 
-echo "aws ec2 describe-import-image-tasks --import-task-ids "$( echo ${ImportTask} | jq '.ImportTaskId' --raw-output)
+ImportTaskId=$(aws ec2 import-image \
+  --description "${DESCRIPTION}" \
+  --cli-input-json file://./vmimport.json \
+  --query 'ImportTaskId' \
+  --no-dry-run)
+ImageId=""
+while [ "x${ImageId}" = "x" ];do
+  sleep 60
+  date
+  ImageId=$(aws ec2 describe-import-image-tasks \
+    --import-task-ids ${ImportTaskId} \
+    --query 'ImportImageTasks[].ImageId' \
+    --output text )
+  done
+packer build -var aws_source_ami=${ImageId} ami.json

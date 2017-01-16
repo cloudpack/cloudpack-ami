@@ -23,4 +23,4 @@ HISTTIMEFORMAT='%Y-%m-%dT%T%z '
 HISTSIZE=1000000
 EOT
 
-rpm -Uvh --force /tmp/bash-4.1.2-33.el6.1cloudpack.x86_64.rpm
+rpm -Uvh --force /tmp/bash-*.rpm
