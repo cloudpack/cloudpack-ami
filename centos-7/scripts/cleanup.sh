@@ -4,8 +4,8 @@ rm -rf /tmp/*.rpm
 rm -rf /tmp/rpsxps
 rm -f /etc/ssh/ssh_host_*
 rm -rf /var/lib/cloud/*
-rm -rf /home/cloudpack/VBoxGuestAdditions*.iso
-rm -rf /home/cloudpack/.vbox_version
+rm -rf /tmp/VBoxGuestAdditions*.iso
+rm -rf /tmp/.vbox_version
 rm /var/log/vboxadd-install.log
 rm -rf /tmp/rubygems-*
 cd /var/log
