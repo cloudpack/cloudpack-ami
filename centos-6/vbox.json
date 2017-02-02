@@ -5,7 +5,7 @@
       "boot_command": [
         "<tab> text ks=http://{{ .HTTPIP }}:{{ .HTTPPort }}/ks.cfg<enter><wait>"
       ],
-      "boot_wait": "10s",
+      "boot_wait": "30s",
       "disk_size": 4096,
       "guest_os_type": "RedHat_64",
       "http_directory": "http",
@@ -16,9 +16,11 @@
       "ssh_password": "cloudpack",
       "ssh_port": 22,
       "headless": true,
-      "ssh_wait_timeout": "10000s",
+      "ssh_wait_timeout": "1800s",
+      "virtualbox_version_file": "/tmp/.vbox_version",
+      "guest_additions_path": "/tmp/VBoxGuestAdditions.iso",
+      "guest_additions_mode": "upload",
       "shutdown_command": "echo '/sbin/halt -h -p' > /tmp/shutdown.sh; echo 'cloudpack'|sudo -S sh '/tmp/shutdown.sh'",
-      "virtualbox_version_file": ".vbox_version",
       "vboxmanage": [
         [
           "modifyvm",

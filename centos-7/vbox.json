@@ -17,6 +17,9 @@
       "ssh_port": 22,
       "headless": true,
       "ssh_wait_timeout": "10000s",
+      "virtualbox_version_file": "/tmp/.vbox_version",
+      "guest_additions_path": "/tmp/VBoxGuestAdditions.iso",
+      "guest_additions_mode": "upload",
       "shutdown_command": "echo '/sbin/halt -h -p' > /tmp/shutdown.sh; echo 'cloudpack'|sudo -S sh '/tmp/shutdown.sh'",
       "virtualbox_version_file": ".vbox_version",
       "vboxmanage": [
