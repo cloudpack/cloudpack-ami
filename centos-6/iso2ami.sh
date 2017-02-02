@@ -60,6 +60,7 @@ ImportTaskId=$(aws ec2 import-image \
   --description "${DESCRIPTION}" \
   --cli-input-json file://./vmimport.json \
   --query 'ImportTaskId' \
+  --output text \
   --no-dry-run)
 ImageId=""
 while [ "x${ImageId}" = "x" ];do
