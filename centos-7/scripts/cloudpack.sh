@@ -1,32 +1,9 @@
 yum update -y
-cat << EOT >> /etc/cloud/cloud.cfg.d/99-cloudpack.cfg
-locale: en_US.UTF-8
-datasource_list: [Ec2]
-datasource:
-  Ec2:
-    metadata_urls: ['http://169.254.169.254']
-
-fs_setup:
-  - label: ephemeral1,
-    filesystem: ext3
-    extra_opts: [ "-E", "nodiscard" ]
-    device: ephemeral1
-    partition: auto
-
-mounts:
-  - [ /dev/xvdc, /mnt/ephemeral/1 ]
-EOT
-
-cat << EOT >> /etc/yum.conf
-exclude=bash*
-EOT
-
 yum install -y bc strace mtr dstat sysstat tcpdump irqbalance git tree mlocate
-yum install -y --enablerepo=epel chrony jq htop nc
+yum install -y --enablerepo=epel jq htop nc
 rpm -Uvh --force /tmp/bash-4.2.46-19cloudpack.el7.centos.x86_64.rpm
 rpm -ivh /tmp/ec2-utils-0.5-1.32.el7.centos.noarch.rpm
 rpm -ivh /tmp/ec2-net-utils-0.5-1.32.el7.centos.noarch.rpm
-systemctl enable chronyd.service
 systemctl enable irqbalance.service
 systemctl enable sysstat.service
 systemctl enable NetworkManager-wait-online.service
@@ -41,10 +18,6 @@ grep net.ifnames /etc/default/grub || sed -i '/^GRUB_CMDLINE_LINUX/s/\"$/ net.if
 grub2-mkconfig -o /boot/grub2/grub.cfg
 timedatectl set-timezone Asia/Tokyo
 sed -i -e 's/inet_protocols.*=.*/inet_protocols = ipv4/g' /etc/postfix/main.cf
-
-echo "leapsecmode slew" >> /etc/chrony.conf
-echo "maxslewrate 1000" >> /etc/chrony.conf
-echo "smoothtime 400 0.001 leaponly" >> /etc/chrony.conf
 
 [ -f vmimport.ifcfg-lo ] && mv /etc/sysconfig/network-scripts/vmimport.ifcfg-lo /etc/sysconfig/network-scripts/ifcfg-lo
 [ -f ifcfg-eth0.vmimport ] && rm /etc/sysconfig/network-scripts/ifcfg-eth0.vmimport

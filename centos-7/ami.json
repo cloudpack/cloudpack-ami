@@ -57,6 +57,7 @@
             "scripts/cloudpack.sh",
             "scripts/bash-environment.sh",
             "scripts/dkms.sh",
+            "scripts/chronyd.sh",
             "scripts/cleanup.sh"
           ]
         }
