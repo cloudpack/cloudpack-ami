@@ -3,12 +3,6 @@ yum -y install --enablerepo=epel,extras \
 	cloud-utils \
 	cloud-utils-growpart \
 
-#cd /etc/init.d
-#sed -i -e "2i # chkconfig: - 50 50" cloud-init-local
-#sed -i -e "2i # chkconfig: - 51 51" cloud-init
-#sed -i -e "2i # chkconfig: - 52 52" cloud-config
-#sed -i -e "2i # chkconfig: - 53 53" cloud-final
-
 chkconfig --add cloud-init-local
 chkconfig --add cloud-init
 chkconfig --add cloud-config
