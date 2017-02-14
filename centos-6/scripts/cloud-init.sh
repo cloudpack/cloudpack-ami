@@ -2,6 +2,9 @@ yum -y install --enablerepo=epel,extras \
 	cloud-init \
 	cloud-utils \
 	cloud-utils-growpart \
+	python-pip
+pip install -U urllib3 pip
+pip install -U awscli
 
 chkconfig --add cloud-init-local
 chkconfig --add cloud-init
