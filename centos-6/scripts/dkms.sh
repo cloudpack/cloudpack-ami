@@ -9,7 +9,7 @@ tar xzf ixgbevf-4.0.3.tar.gz
 cd ixgbevf-4.0.3
  
 # dkms用の設定
-cat <<'EOT'> dkms.conf
+cat <<'EOT' > dkms.conf
 PACKAGE_NAME="ixgbevf"
 PACKAGE_VERSION="4.0.3"
 CLEAN="cd src/; make clean"

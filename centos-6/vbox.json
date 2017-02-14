@@ -16,7 +16,7 @@
       "ssh_password": "cloudpack",
       "ssh_port": 22,
       "headless": true,
-      "ssh_wait_timeout": "10m",
+      "ssh_wait_timeout": "20m",
       "virtualbox_version_file": "/tmp/.vbox_version",
       "guest_additions_path": "/tmp/VBoxGuestAdditions.iso",
       "guest_additions_mode": "upload",
