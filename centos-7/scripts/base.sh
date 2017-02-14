@@ -3,7 +3,6 @@ yum -y update
 yum -y install gcc make gcc-c++ kernel-devel-`uname -r` perl
 yum -y install --enablerepo=epel \
 	lsof
-pip install -U awscli
 
 sed -i.bak 's@\(.*\)/mnt\(.*\)@#\1/mnt\2@g' /etc/fstab
 
