@@ -29,4 +29,10 @@ fs_setup:
 
 mounts:
   - [ /dev/xvdc, /mnt/ephemeral/1 ]
+
+bootcmd:
+  - [ cloud-init-per, once, growpart_sda3, growpart, /dev/sda, 3 ]
+  - [ cloud-init-per, once, pvresize_system, pvresize, /dev/sda3 ]
+  - [ cloud-init-per, once, lvextend_system, lvextend, -l, +100%FREE ,/dev/vg_root/lv_root ]
+  - [ cloud-init-per, once, xfs_growfs, xfs_growfs, /dev/vg_root/lv_root ]
 EOT
