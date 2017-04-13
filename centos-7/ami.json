@@ -57,6 +57,8 @@
             "scripts/cloudpack.sh",
             "scripts/bash-environment.sh",
             "scripts/dkms.sh",
+            "scripts/ixgbevf.sh",
+            "scripts/amzn-drivers.sh",
             "scripts/chronyd.sh",
             "scripts/cleanup.sh"
           ]
