@@ -13,8 +13,6 @@ chkconfig --add cloud-final
 
 sed -i.bak 's@\(.*\)name: \(.*\)@\1name: cloudpack@g' /etc/cloud/cloud.cfg
 
-#pip install -U urllib3 urllib3-mock apiclient
-
 cat << EOT >> /etc/cloud/cloud.cfg.d/99-cloudpack.cfg
 locale: en_US.UTF-8
 datasource_list: [Ec2]

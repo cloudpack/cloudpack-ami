@@ -70,5 +70,5 @@ while [ "x${ImageId}" = "x" ];do
     --import-task-ids ${ImportTaskId} \
     --query 'ImportImageTasks[].ImageId' \
     --output text )
-  done
+done
 packer build -var aws_source_ami=${ImageId} ami.json
