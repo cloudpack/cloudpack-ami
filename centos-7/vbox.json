@@ -48,7 +48,6 @@
             "scripts/repo-epel.sh",
             "scripts/repo-elrepo.sh",
             "scripts/base.sh",
-            "scripts/dkms.sh",
             "scripts/cloud-init.sh",
             "scripts/cleanup.sh"
           ]

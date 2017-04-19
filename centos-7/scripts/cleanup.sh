@@ -8,6 +8,7 @@ rm -rf /tmp/VBoxGuestAdditions*.iso
 rm -rf /tmp/.vbox_version
 rm /var/log/vboxadd-install.log
 rm -rf /tmp/rubygems-*
+rm /home/cloudpack/.vbox_version
 cd /var/log
 ls -F /var/log | grep -v / | xargs -L1 cp /dev/null
 find /var/log/ -type f -name \*log | xargs -L1 cp /dev/null

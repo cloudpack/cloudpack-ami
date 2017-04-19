@@ -1,11 +1,11 @@
 # cloudpack-ami
 ## AMIのありか
 
-(2017年2月2日現在)
+(2017年4月19日現在)
 
 | Distribution | 名称 | AMI ID |
 |:---:|:---|:---|
-| CentOS7 | cloudpack-ami CentOS7 1487147943 | ami-6ed49809 |
+| CentOS7 | cloudpack-ami CentOS7 1487147943 | ami-f0012f97 |
 | CentOS6 | cloudpack-ami CentOS6 1487091532 | ami-0c74386b |
 
 いずれもログインユーザーは `cloudpack` です。
@@ -29,6 +29,7 @@ https://github.com/shiguredo/packer-templates こちらを大いに参考とさ�
 - ログインユーザーは cloudpack(パスワード同じ)
 - HVM対応インスタンスのみ選択可能
 - SR-IOV対応カーネルモジュール
+- ENA対応カーネルモジュール(CentOS 7)
 - bash `SYSLOG_HISTORY` への対応
 
 ## cloudpack-amiの作り方
@@ -67,6 +68,6 @@ AMI_IDを自動認識し、packerにて処理を進めます。
 ## 今後のメモ
 
 ```
-sed -i.bak -e 's:\(.*\)ixgbevf.conf\(.*\):#\1ixgbenf.conf\2:g' ec2-utils.spec
+sed -i.bak -e 's:\(.*\)ixgbevf.conf\(.*\):#\1ixgbevf.conf\2:g' ec2-utils.spec
 rpm --without upstart ec2-utils.spec
 ```
