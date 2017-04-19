@@ -1,4 +1,9 @@
 yum update -y
+
+cat << EOT >> /etc/yum.conf
+exclude=bash*
+EOT
+
 yum install -y bc strace mtr dstat sysstat tcpdump irqbalance git tree mlocate
 yum install -y --enablerepo=epel jq htop nc
 rpm -Uvh --force /tmp/bash-4.2.46-19cloudpack.el7.centos.x86_64.rpm
