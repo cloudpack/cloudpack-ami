@@ -2,7 +2,7 @@
 # ixgbevfソースのダウンロード（dkmsの都合で /usr/src である必要アリ）
 DRIVER=ixgbevf
 PACKAGE=ixgbevf
-VERSION=4.0.3
+VERSION=4.1.2
 cd /usr/src
 curl -s -O -L https://sourceforge.net/projects/e1000/files/ixgbevf%20stable/${VERSION}/${DRIVER}-${VERSION}.tar.gz
 tar xzf ${DRIVER}-${VERSION}.tar.gz
@@ -10,14 +10,14 @@ cd ${DRIVER}-${VERSION}
  
 # dkms用の設定
 cat <<EOT > dkms.conf
-PACKAGE_NAME="${package}"
-PACKAGE_VERSION="${package}"
+PACKAGE_NAME="${PACKAGE}"
+PACKAGE_VERSION="${PACKAGE}"
 CLEAN="cd src/; make clean"
 MAKE="cd src/; make BUILD_KERNEL=\${kernelver}"
 BUILT_MODULE_LOCATION[0]="src/"
-BUILT_MODULE_NAME[0]="${package}"
+BUILT_MODULE_NAME[0]="${PACKAGE}"
 DEST_MODULE_LOCATION[0]="/updates"
-DEST_MODULE_NAME[0]="${package}"
+DEST_MODULE_NAME[0]="${PACKAGE}"
 AUTOINSTALL="yes"
 EOT
 # インストール

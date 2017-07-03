@@ -1,12 +1,12 @@
 # cloudpack-ami
 ## AMIのありか
 
-(2017年4月20日現在)
+(2017年7月03日現在)
 
 | Distribution | 名称 | AMI ID |
 |:---:|:---|:---|
-| CentOS7 | cloudpack-ami CentOS7 1492616058 | ami-d083adb7 |
-| CentOS6 | cloudpack-ami CentOS6 1492591169 | ami-941b35f3 |
+| CentOS7 | cloudpack-ami CentOS7 1499092384 | ami-f50e1392 |
+| CentOS6 | cloudpack-ami CentOS6 1499090299 | ami-3a0e135d |
 
 いずれもログインユーザーは `cloudpack` です。
 
@@ -30,6 +30,7 @@ https://github.com/shiguredo/packer-templates こちらを大いに参考とさ�
 - HVM対応インスタンスのみ選択可能
 - SR-IOV対応カーネルモジュール
 - ENA対応カーネルモジュール(CentOS 7)
+- ixgbevf対応カーネルモジュール
 - bash `SYSLOG_HISTORY` への対応
 
 ## cloudpack-amiの作り方
