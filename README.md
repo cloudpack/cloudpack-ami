@@ -1,12 +1,12 @@
 # cloudpack-ami
 ## AMIのありか
 
-(2017年7月03日現在)
+(2017年7月28日現在)
 
 | Distribution | 名称 | AMI ID |
 |:---:|:---|:---|
-| CentOS7 | cloudpack-ami CentOS7 1499092384 | ami-f50e1392 |
-| CentOS6 | cloudpack-ami CentOS6 1499090299 | ami-3a0e135d |
+| CentOS7 | cloudpack-ami CentOS7 1501200423 | ami-955ebcf3 |
+| CentOS6 | cloudpack-ami CentOS6 1501196543 | ami-9655b7f0 |
 
 いずれもログインユーザーは `cloudpack` です。
 
