@@ -11,7 +11,7 @@ systemctl enable cloud-init.service
 systemctl enable cloud-config.service
 systemctl enable cloud-final.service
 
-sed -i.bak 's@\(.*\)name: \(.*\)@\1name: cloudpack@g' /etc/cloud/cloud.cfg
+sed -i.bak 's@\(\s\)name: \(.*\)@\1name: cloudpack@g' /etc/cloud/cloud.cfg
 
 cat << EOT >> /etc/cloud/cloud.cfg.d/99-cloudpack.cfg
 locale: en_US.UTF-8
