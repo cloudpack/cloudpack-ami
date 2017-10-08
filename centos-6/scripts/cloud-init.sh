@@ -31,9 +31,11 @@ mounts:
   - [ /dev/xvdc, /mnt/ephemeral/1 ]
 
 bootcmd:
-  - [ cloud-init-per, once, grow_pv,   LANG=C, growpart,   /dev/xvda, 2 ]
-  - [ cloud-init-per, once, grow_VG,   pvresize,   /dev/xvda2 ]
-  - [ cloud-init-per, once, grow_LV,   lvextend,   -l, +100%FREE, /dev/mapper/vg_root-lv_root ]
-  - [ cloud-init-per, once, grow_fs,   xfs_growfs, /dev/mapper/vg_root-lv_root ]
+  - [ cloud-init-per, once, grow_pv, LANG=C, growpart, /dev/xvda, 2 ]
+  - [ cloud-init-per, once, reboot, reboot ]                                    
+  - [ cloud-init-per, once, reboot_sleep, sleep, 1m ]
+  - [ cloud-init-per, once, grow_VG, pvresize, /dev/xvda2 ]
+  - [ cloud-init-per, once, grow_LV, lvextend, -l, +100%FREE, /dev/mapper/vg_root-lv_root ]
+  - [ cloud-init-per, once, resize2fs_system, resize2fs, /dev/mapper/vg_root-lv_root ]
 EOT
 
