@@ -1,5 +1,5 @@
 yum -y update
-
+yum -y install deltarpm
 yum -y install gcc make gcc-c++ kernel-devel-`uname -r` perl
 yum -y install --enablerepo=epel \
 	lsof
