@@ -19,7 +19,10 @@
     "sriov_support": true,
     "ami_groups": "all",
     "ami_description": "cloudpack-ami CentOS7 {{timestamp}}",
-    "ami_name": "cloudpack-ami CentOS7 {{timestamp}}"
+    "ami_name": "cloudpack-ami CentOS7 {{timestamp}}",
+    "tags": {
+      "Name": "cloudpack-ami CentOS7 {{timestamp}}"
+    }
   }],
   "provisioners": [
     {

@@ -6,6 +6,7 @@ EOT
 
 yum install -y bc strace mtr dstat sysstat tcpdump irqbalance git tree mlocate
 yum install -y --enablerepo=epel jq htop nc
+yum install -y https://s3.amazonaws.com/ec2-downloads-windows/SSMAgent/latest/linux_amd64/amazon-ssm-agent.rpm
 rpm -ivh /tmp/ec2-net-utils-0.5-1.32.el6.noarch.rpm
 rpm -ivh /tmp/ec2-utils-0.5-1.32.el6.noarch.rpm
 chkconfig irqbalance on                                                         

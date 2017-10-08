@@ -6,6 +6,7 @@ EOT
 
 yum install -y bc strace mtr dstat sysstat tcpdump irqbalance git tree mlocate
 yum install -y --enablerepo=epel jq htop nc
+yum install -y https://s3.amazonaws.com/ec2-downloads-windows/SSMAgent/latest/linux_amd64/amazon-ssm-agent.rpm
 rpm -Uvh --force /tmp/bash-4.2.46-19cloudpack.el7.centos.x86_64.rpm
 rpm -ivh /tmp/ec2-utils-0.5-1.32.el7.centos.noarch.rpm
 rpm -ivh /tmp/ec2-net-utils-0.5-1.32.el7.centos.noarch.rpm
@@ -17,10 +18,6 @@ systemctl disable kdump.service
 systemctl disable wpa_supplicant.service
 systemctl disable firewalld.service
 systemctl disable tuned.service
-#rpm -qa kernel | sed 's/^kernel-//'  | xargs -I {} dracut -f /boot/initramfs-{}.img {} 1>/dev/null 2>1
-sed -i.bak -e 's/\(.*\)linux16\(.*\)/\1linux16\2 maxcpus=18/g' /boot/grub2/grub.cfg
-grep net.ifnames /etc/default/grub || sed -i '/^GRUB_CMDLINE_LINUX/s/\"$/ net.ifnames=0 biosdevname=0 ipv6.disable=1\"/g' /etc/default/grub
-grub2-mkconfig -o /boot/grub2/grub.cfg
 timedatectl set-timezone Asia/Tokyo
 sed -i -e 's/inet_protocols.*=.*/inet_protocols = ipv4/g' /etc/postfix/main.cf
 
