@@ -7,9 +7,9 @@ EOT
 yum install -y bc strace mtr dstat sysstat tcpdump irqbalance git tree mlocate
 yum install -y --enablerepo=epel jq htop nc
 yum install -y https://s3.amazonaws.com/ec2-downloads-windows/SSMAgent/latest/linux_amd64/amazon-ssm-agent.rpm
-rpm -Uvh --force /tmp/bash-4.2.46-19cloudpack.el7.centos.x86_64.rpm
-rpm -ivh /tmp/ec2-utils-0.5-1.32.el7.centos.noarch.rpm
-rpm -ivh /tmp/ec2-net-utils-0.5-1.32.el7.centos.noarch.rpm
+rpm -Uvh --force /tmp/bash-4.2.46-29cloudpack.el7.centos.x86_64.rpm
+rpm -ivh /tmp/ec2-utils-0.5-1.33.el7.centos.noarch.rpm
+rpm -ivh /tmp/ec2-net-utils-0.5-1.33.el7.centos.noarch.rpm
 systemctl enable irqbalance.service
 systemctl enable sysstat.service
 systemctl enable NetworkManager-wait-online.service

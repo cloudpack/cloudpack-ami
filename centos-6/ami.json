@@ -32,13 +32,13 @@
     },
     {
       "type": "file",
-      "source": "files/ec2-utils-0.5-1.32.el6.noarch.rpm",
-      "destination": "/tmp/ec2-utils-0.5-1.32.el6.noarch.rpm"
+      "source": "files/ec2-net-utils-0.5-1cloudpack.33.el6.noarch.rpm",
+      "destination": "/tmp/ec2-net-utils-0.5-1cloudpack.33.el6.noarch.rpm"
     },
     {
       "type": "file",
-      "source": "files/ec2-utils-0.5-1.32.el6.noarch.rpm",
-      "destination": "/tmp/ec2-utils-0.5-1.32.el6.noarch.rpm"
+      "source": "files/ec2-utils-0.5-1cloudpack.33.el6.noarch.rpm",
+      "destination": "/tmp/ec2-utils-0.5-1cloudpack.33.el6.noarch.rpm"
     },
     {
       "type": "file",
