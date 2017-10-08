@@ -14,7 +14,7 @@
     "associate_public_ip_address": true,
     "instance_type": "t2.nano",
     "ssh_username": "cloudpack",
-    "ssh_timeout": "10m",
+    "ssh_timeout": "30m",
     "ena_support": true,
     "sriov_support": true,
     "ami_groups": "all",
