@@ -31,7 +31,7 @@ mounts:
   - [ /dev/xvdc, /mnt/ephemeral/1 ]
 
 bootcmd:
-  - [ cloud-init-per, once, grow_pv, LANG=C, growpart, /dev/xvda, 2 ]
+  - [ cloud-init-per, once, grow_pv, growpart, /dev/xvda, 2 ]
   - [ cloud-init-per, once, reboot, reboot ]                                    
   - [ cloud-init-per, once, reboot_sleep, sleep, 1m ]
   - [ cloud-init-per, once, grow_VG, pvresize, /dev/xvda2 ]
