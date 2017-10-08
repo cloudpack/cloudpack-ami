@@ -1,12 +1,12 @@
 # cloudpack-ami
 ## AMIのありか
 
-(2017年7月28日現在)
+(2017年10月8日現在)
 
 | Distribution | 名称 | AMI ID |
 |:---:|:---|:---|
-| CentOS7 | cloudpack-ami CentOS7 1501200423 | ami-955ebcf3 |
-| CentOS6 | cloudpack-ami CentOS6 1501196543 | ami-9655b7f0 |
+| CentOS7 | cloudpack-ami CentOS7 1507436426 | ami-e3588a85 |
+| CentOS6 | cloudpack-ami CentOS6 1507446524 | ami-3841935e |
 
 いずれもログインユーザーは `cloudpack` です。
 
@@ -14,11 +14,12 @@
 
 ISOから素の状態に近いAMIをフルスクラッチで作成します。
 https://github.com/shiguredo/packer-templates こちらを大いに参考とさせていただきました。
+2017年10月8日よりSWAPを廃止しました。必要な方は適宜ご用意下さい。
 
 ### 基本方針
 
 - 可能な限り公式に提供されているISOをもとにして構成します。
-- SR-IOV / irqbalance などは初期状態で組み込みます。
+- SR-IOV / ENA driver / irqbalance などは初期状態で組み込みます。
 - bashの `SYSLOG_HISTORY` に対応します。
 - ログインユーザーは `cloudpack` となります(sudo可)。
 
@@ -28,8 +29,7 @@ https://github.com/shiguredo/packer-templates こちらを大いに参考とさ�
 - 構成時点において `yum -y update` を実施
 - ログインユーザーは cloudpack(パスワード同じ)
 - HVM対応インスタンスのみ選択可能
-- SR-IOV対応カーネルモジュール
-- ENA対応カーネルモジュール(CentOS 7)
+- ENA対応カーネルモジュール
 - ixgbevf対応カーネルモジュール
 - bash `SYSLOG_HISTORY` への対応
 
