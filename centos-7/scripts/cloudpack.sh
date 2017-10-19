@@ -75,3 +75,10 @@ cat << EOT >> /etc/security/limits.d/99-cloudpack.conf
 * soft nofile 65536
 * hard nofile 65536
 EOT
+
+mkdir /etc/systemd/system.conf.d
+cat << EOT >> /etc/systemd/system.conf.d/limits.conf
+[Manager]
+DefaultLimitNOFILE=1006500
+DefaultLimitNPROC=1006500
+EOT
