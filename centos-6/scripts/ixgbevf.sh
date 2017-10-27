@@ -2,7 +2,7 @@
 # ixgbevfソースのダウンロード（dkmsの都合で /usr/src である必要アリ）
 DRIVER=ixgbevf
 PACKAGE=ixgbevf
-VERSION=4.2.2
+VERSION=4.1.2
 cd /usr/src
 curl -s -O -L https://sourceforge.net/projects/e1000/files/ixgbevf%20stable/${VERSION}/${DRIVER}-${VERSION}.tar.gz
 tar xzf ${DRIVER}-${VERSION}.tar.gz
