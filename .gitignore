@@ -1,2 +1,4 @@
-data/
 data/*
+tools/*
+memo
+*.rpm
