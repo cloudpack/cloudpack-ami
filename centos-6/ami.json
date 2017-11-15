@@ -16,7 +16,7 @@
     "ssh_username": "cloudpack",
     "ssh_timeout": "30m",
     "ena_support": true,
-    "sriov_support": true,
+    "sriov_support": false,
     "ami_groups": "all",
     "ami_description": "cloudpack-ami CentOS6 {{timestamp}}",
     "ami_name": "cloudpack-ami CentOS6 {{timestamp}}",
@@ -61,6 +61,7 @@
             "scripts/bash-environment.sh",
             "scripts/cloudpack.sh",
             "scripts/dkms.sh",
+	    "scripts/ixgbevf.sh",
 	    "scripts/amzn-drivers.sh",
             "scripts/chronyd.sh",
             "scripts/cleanup.sh"

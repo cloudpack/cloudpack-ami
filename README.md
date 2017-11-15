@@ -6,7 +6,7 @@
 | Distribution | 名称 | AMI ID |
 |:---:|:---|:---|
 | CentOS7 | cloudpack-ami CentOS7 1509073717 | ami-73a20215 |
-| CentOS6 | N/A | N/A |
+| CentOS6 | cloudpack-ami CentOS6 1510726445 | ami-0dd3656b |
 
 いずれもログインユーザーは `cloudpack` です。
 
@@ -19,7 +19,7 @@ https://github.com/shiguredo/packer-templates こちらを大いに参考とさ�
 ### 基本方針
 
 - 可能な限り公式に提供されているISOをもとにして構成します。
-- SR-IOV / ENA driver / irqbalance などは初期状態で組み込みます。
+- SR-IOV / ENA driver / irqbalance などは初期状態で組み込みます。(CentOS6はSR-IOV非対応)
 - bashの `SYSLOG_HISTORY` に対応します。
 - ログインユーザーは `cloudpack` となります(sudo可)。
 
