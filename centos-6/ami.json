@@ -10,7 +10,6 @@
     "secret_key": "{{user `aws_secret_key`}}",
     "region": "ap-northeast-1",
     "source_ami": "{{user `aws_source_ami`}}",
-    "ssh_private_ip": false,
     "associate_public_ip_address": true,
     "instance_type": "t2.nano",
     "ssh_username": "cloudpack",
