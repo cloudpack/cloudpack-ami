@@ -72,4 +72,3 @@ while [ "x${ImageId}" = "x" ];do
     --output text )
 done
 packer build -var aws_source_ami=${ImageId} ami.json
-
