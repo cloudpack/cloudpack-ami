@@ -2,8 +2,11 @@ yum install -y --enablerepo=epel chrony
 systemctl enable chronyd.service
 CONF=/etc/chrony.conf
 
-echo "leapsecmode slew" >> ${CONF}
-echo "maxslewrate 1000" >> ${CONF}
-echo "smoothtime 400 0.001 leaponly" >> ${CONF}
-sed -e '/server /D' ${CONF}
-echo "server 169.254.169.123 prefer iburst" >> ${CONF}
+sed -i -e '/server /D' -e '/makestep /D' ${CONF}
+cat << EOT >> ${CONF}
+leapsecmode slew
+maxslewrate 83333
+smoothtime 400 0.001 leaponly
+makestep 600 30
+server 169.254.169.123 prefer iburst
+EOT
