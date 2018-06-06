@@ -60,6 +60,9 @@ fs.aio-max-nr = 1048576
 vm.swappiness = 0
 net.ipv6.conf.all.disable_ipv6 = 1
 net.ipv6.conf.default.disable_ipv6 = 1
+
+nvme_core.io_timeout=255
+nvme_core.max_retries=128
 EOT
 
 cat << EOT >> /etc/security/limits.d/99-cloudpack.conf
