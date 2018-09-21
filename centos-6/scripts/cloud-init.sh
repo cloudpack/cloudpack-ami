@@ -32,9 +32,11 @@ mounts:
 
 bootcmd:
   - [ cloud-init-per, once, grow_pv, growpart, /dev/xvda, 2 ]
+  - [ cloud-init-per, once, grow_nvme, growpart, /dev/nvme0n1, 2 ]
   - [ cloud-init-per, once, reboot, reboot ]                                    
   - [ cloud-init-per, once, reboot_sleep, sleep, 1m ]
   - [ cloud-init-per, once, grow_VG, pvresize, /dev/xvda2 ]
+  - [ cloud-init-per, once, grow_nvme, pvresize, /dev/nvme0n1p2 ]
   - [ cloud-init-per, once, grow_LV, lvextend, -l, +100%FREE, /dev/mapper/vg_root-lv_root ]
   - [ cloud-init-per, once, resize2fs_system, resize2fs, /dev/mapper/vg_root-lv_root ]
 EOT
