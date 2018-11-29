@@ -33,8 +33,8 @@ mounts:
 runcmd:
   - [ cloud-init-per, once, grow_sd,   growpart,   /dev/xvda, 2 ]
   - [ cloud-init-per, once, grow_nvme,   growpart,   /dev/nvme0n1, 2 ]
-  - [ cloud-init-per, once, grow_VG,   pvresize,   /dev/xvda2 ]
-  - [ cloud-init-per, once, grow_nvme,   pvresize,   /dev/nvme0n1p2 ]
+  - [ cloud-init-per, once, pv_sd,   pvresize,   /dev/xvda2 ]
+  - [ cloud-init-per, once, pv_nvme,   pvresize,   /dev/nvme0n1p2 ]
   - [ cloud-init-per, once, grow_LV,   lvextend,   -l, +100%FREE, /dev/mapper/vg_root-lv_root ]
   - [ cloud-init-per, once, grow_fs,   xfs_growfs, /dev/mapper/vg_root-lv_root ]
 EOT

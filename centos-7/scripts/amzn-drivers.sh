@@ -2,7 +2,7 @@
 # amzn-driversソースのダウンロード（dkmsの都合で /usr/src である必要アリ）
 DRIVER=amzn-drivers
 PACKAGE=ena
-VERSION=1.5.3
+VERSION=2.0.2
 cd /usr/src
 git clone https://github.com/amzn/amzn-drivers
 mv ${DRIVER} ${DRIVER}-${VERSION}
