@@ -1,0 +1,66 @@
+{
+  "variables": {
+    "aws_access_key": "",
+    "aws_secret_key": "",
+    "aws_source_ami": ""
+  },
+  "builders": [{
+    "type": "amazon-ebs",
+    "access_key": "{{user `aws_access_key`}}",
+    "secret_key": "{{user `aws_secret_key`}}",
+    "region": "ap-northeast-1",
+    "source_ami": "{{user `aws_source_ami`}}",
+    "associate_public_ip_address": true,
+    "instance_type": "t2.nano",
+    "ssh_username": "cloudpack",
+    "ssh_timeout": "30m",
+    "ena_support": true,
+    "sriov_support": true,
+    "ami_groups": "all",
+    "ami_description": "cloudpack-ami CentOS8 {{timestamp}}",
+    "ami_name": "cloudpack-ami CentOS8 {{timestamp}}",
+    "tags": {
+      "Name": "cloudpack-ami CentOS8 {{timestamp}}"
+    }
+  }],
+  "provisioners": [
+    {
+      "type": "file",
+      "source": "files/ec2-net-utils-0.5-1.33.el7.centos.noarch.rpm",
+      "destination": "/tmp/ec2-net-utils-0.5-1.33.el7.centos.noarch.rpm"
+    },
+    {
+      "type": "file",
+      "source": "files/ec2-utils-0.5-1.33.el7.centos.noarch.rpm",
+      "destination": "/tmp/ec2-utils-0.5-1.33.el7.centos.noarch.rpm"
+    },
+    {
+      "type": "file",
+      "source": "files/rpsxps",
+      "destination": "/tmp/rpsxps"
+    },
+    {
+      "type": "shell",
+      "execute_command": "echo 'cloudpack'|sudo -S sh '{{.Path}}'",
+      "override" : {
+        "amazon-ebs": {
+          "scripts": [
+            "scripts/sleep.sh",
+            "scripts/repo-neo4j.sh",
+            "scripts/repo-nginx.sh",
+            "scripts/repo-postgresql.sh",
+            "scripts/repo-mysql.sh",
+            "scripts/bash-environment.sh",
+            "scripts/cloudpack.sh",
+            "scripts/dkms.sh",
+            "scripts/ixgbevf.sh",
+            "scripts/amzn-drivers.sh",
+            "scripts/chronyd.sh",
+            "scripts/cleanup.sh"
+          ]
+        }
+      }
+    }
+  ]
+}
+

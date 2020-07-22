@@ -1,0 +1,64 @@
+{
+  "builders": [
+    {
+      "type": "virtualbox-iso",
+      "boot_command": [
+        "<tab> text ks=http://{{ .HTTPIP }}:{{ .HTTPPort }}/ks.cfg<enter><wait>"
+      ],
+      "boot_wait": "10s",
+      "disk_size": 4096,
+      "guest_os_type": "RedHat_64",
+      "http_directory": "http",
+      "iso_url": "http://ftp.iij.ad.jp/pub/linux/centos/8.2.2004/isos/x86_64/CentOS-8.2.2004-x86_64-dvd1.iso",
+      "iso_checksum": "c87a2d81d67bbaeaf646aea5bedd70990078ec252fc52f5a7d65ff609871e255",
+      "ssh_username": "cloudpack",
+      "ssh_password": "cloudpack",
+      "ssh_port": 22,
+      "headless": true,
+      "ssh_wait_timeout": "1800s",
+      "guest_additions_path": "/tmp/VBoxGuestAdditions.iso",
+      "guest_additions_mode": "upload",
+      "shutdown_command": "echo '/sbin/halt -h -p' > /tmp/shutdown.sh; echo 'cloudpack'|sudo -S sh '/tmp/shutdown.sh'",
+      "vboxmanage": [
+        [
+          "modifyvm",
+          "{{.Name}}",
+          "--memory",
+          "1024"
+        ],
+        [
+          "modifyvm",
+          "{{.Name}}",
+          "--cpus",
+          "1"
+        ]
+      ]
+    }
+  ],
+  "provisioners": [
+    {
+      "type": "shell",
+      "execute_command": "echo 'cloudpack'|sudo -S sh '{{.Path}}'",
+      "override": {
+        "virtualbox-iso": {
+          "scripts": [
+            "scripts/repo-epel.sh",
+            "scripts/repo-elrepo.sh",
+            "scripts/base.sh",
+            "scripts/cleanup.sh"
+          ]
+        }
+      }
+    }
+  ],
+  "post-processors": [
+    {
+      "type": "vagrant",
+      "override": {
+        "virtualbox": {
+          "output": "centos-8-x86_64-box.tar.gz"
+        }
+      }
+    }
+  ]
+}
