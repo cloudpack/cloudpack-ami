@@ -3,8 +3,8 @@ yum -y install --enablerepo=epel,extras \
 	cloud-utils \
 	cloud-utils-growpart \
 	python-pip
-pip install -U urllib3 pip
-pip install -U awscli
+#pip install -U urllib3 pip
+yum install -y awscli
 
 systemctl enable cloud-init-local.service
 systemctl enable cloud-init.service

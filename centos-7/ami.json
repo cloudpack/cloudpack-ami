@@ -51,12 +51,6 @@
         "amazon-ebs": {
           "scripts": [
             "scripts/sleep.sh",
-            "scripts/repo-mongodb-org-3.0.sh",
-            "scripts/repo-neo4j.sh",
-            "scripts/repo-nginx.sh",
-            "scripts/repo-postgresql.sh",
-            "scripts/repo-mysql.sh",
-            "scripts/repo-riak.sh",
             "scripts/bash-environment.sh",
             "scripts/cloudpack.sh",
             "scripts/dkms.sh",
