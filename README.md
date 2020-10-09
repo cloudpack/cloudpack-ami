@@ -1,12 +1,13 @@
 # cloudpack-ami
 ## AMIのありか
 
-(2018年12月05日現在)
+(2020年10月09日現在)
 
-| Distribution | 名称 | AMI ID |
-|:---:|:---|:---|
-| CentOS7 | cloudpack-ami CentOS7 1543986071 | ami-0969852476aa3ec35 |
-| CentOS6 | cloudpack-ami CentOS6 1537421247 | ami-03c942fd0222bdd1f |
+| Distribution | 名称 | AMI ID | 備考 |
+|:---:|:---|:---|:---|
+| CentOS8 | cloudpack-ami CentOS8 1602202598 | ami-0395bf427fe6986b3 | |
+| CentOS7 | cloudpack-ami CentOS7 1601925231 | ami-0ed4b5f57474524a3 | |
+| CentOS6 | cloudpack-ami CentOS6 1537421247 | ami-03c942fd0222bdd1f | (今後リリースありません) |
 
 いずれもログインユーザーは `cloudpack` です。
 
@@ -19,7 +20,7 @@ https://github.com/shiguredo/packer-templates こちらを大いに参考とさ�
 ### 基本方針
 
 - 可能な限り公式に提供されているISOをもとにして構成します。
-- SR-IOV / ENA driver / irqbalance などは初期状態で組み込みます。(CentOS6はSR-IOV非対応)
+- ENA driver / irqbalance などは初期状態で組み込みます。(CentOS6はSR-IOV非対応)
 - bashの `SYSLOG_HISTORY` に対応します。
 - ログインユーザーは `cloudpack` となります(sudo可)。
 
@@ -28,9 +29,7 @@ https://github.com/shiguredo/packer-templates こちらを大いに参考とさ�
 - sysctl / limits まわりの既定値の変更
 - 構成時点において `yum -y update` を実施
 - ログインユーザーは cloudpack(パスワード同じ)
-- HVM対応インスタンスのみ選択可能
 - ENA対応カーネルモジュール
-- ixgbevf対応カーネルモジュール
 - bash `SYSLOG_HISTORY` への対応
 
 ## cloudpack-amiの作り方
