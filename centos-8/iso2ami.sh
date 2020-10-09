@@ -1,5 +1,6 @@
 #!/bin/sh
 export PATH=/usr/local/bin:/usr/bin:/bin
+#alias aws='docker run --rm -ti -v ~/.aws:/root/.aws -v $(pwd):/aws -v ~/.ssh:/root/ssh $(for _e in AWS_PAGER AWS_ACCESS_KEY_ID AWS_CA_BUNDLE AWS_CONFIG_FILE AWS_DEFAULT_OUTPUT AWS_DEFAULT_REGION AWS_PROFILE AWS_ROLE_SESSION_NAME AWS_SECRET_ACCESS_KEY AWS_SESSION_TOKEN AWS_SHARED_CREDENTIALS_FILE;do if [ "x$(eval echo \$$_e)" != "x" ];then echo -n " --env $(echo ${_e})=$(eval echo \$$_e) ";fi;done) amazon/aws-cli'
 set -u
 #set -exv
 export LANG="C"
@@ -37,6 +38,7 @@ packer build vbox.json || exit
 
 tar zxvf *.tar.gz '*.vmdk'
 fn=$( ls -1 *.vmdk | tail -n 1) || ( echo "tar.gz not fount";exit)
+
 aws s3 cp ${fn} s3://${BUCKET}/${PREFIX} || exit
 DESCRIPTION="CentOS bare AMI ${OSREL}"
 
@@ -62,13 +64,25 @@ ImportTaskId=$(aws ec2 import-image \
   --query 'ImportTaskId' \
   --output text \
   --no-dry-run)
-ImageId=""
-while [ "x${ImageId}" = "x" ];do
+Status="----"
+while [ "${Status}" != "completed" -a "${Status}" != "deleted" ];do
   sleep 60
   date
-  ImageId=$(aws ec2 describe-import-image-tasks \
+  Status=$(aws ec2 describe-import-image-tasks \
     --import-task-ids ${ImportTaskId} \
-    --query 'ImportImageTasks[].ImageId' \
+    --query 'ImportImageTasks[].Status' \
     --output text )
 done
-packer build -var aws_source_ami=${ImageId} ami.json
+if [ "${Status}" = "completed" ]; then
+  ImageId=$(aws ec2 describe-import-image-tasks \
+      --import-task-ids ${ImportTaskId} \
+      --query 'ImportImageTasks[].ImageId' \
+      --output text )
+  packer build -var aws_source_ami=${ImageId} ami.json
+else
+  StatusMessage=$(aws ec2 describe-import-image-tasks \
+    --import-task-ids ${ImportTaskId} \
+    --query 'ImportImageTasks[].StatusMessage' \
+    --output text )
+  echo ${StatusMessage}
+fi

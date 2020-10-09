@@ -1,15 +1,15 @@
-yum update -y
+#dnf update -y
 
-cat << EOT >> /etc/yum.conf
+cat << EOT >> /etc/dnf.conf
 exclude=bash*
 EOT
 
-yum install -y bc strace mtr dstat sysstat tcpdump irqbalance git tree mlocate
-yum install -y --enablerepo=epel jq htop nc
-yum install -y https://s3.amazonaws.com/ec2-downloads-windows/SSMAgent/latest/linux_amd64/amazon-ssm-agent.rpm
-rpm -Uvh --force /tmp/bash-4.2.46-29cloudpack.el7.centos.x86_64.rpm
-rpm -ivh /tmp/ec2-utils-0.5-1.33.el7.centos.noarch.rpm
-rpm -ivh /tmp/ec2-net-utils-0.5-1.33.el7.centos.noarch.rpm
+dnf install -y bc strace mtr dstat sysstat tcpdump irqbalance git tree mlocate
+dnf install -y --enablerepo=epel jq htop nc
+dnf install -y https://s3.amazonaws.com/ec2-downloads-windows/SSMAgent/latest/linux_amd64/amazon-ssm-agent.rpm
+#rpm -Uvh --force /tmp/bash-4.2.46-29cloudpack.el7.centos.x86_64.rpm
+rpm -ivh /tmp/amazon-ec2-utils-1.3-1.el8.noarch.rpm
+rpm -ivh /tmp/amazon-ec2-net-utils-1.4-2.el8.noarch.rpm
 systemctl enable irqbalance.service
 systemctl enable sysstat.service
 systemctl enable NetworkManager-wait-online.service
@@ -17,7 +17,6 @@ systemctl disable lvm2-monitor.service
 systemctl disable kdump.service
 systemctl disable wpa_supplicant.service
 systemctl disable firewalld.service
-systemctl disable tuned.service
 timedatectl set-timezone Asia/Tokyo
 sed -i -e 's/inet_protocols.*=.*/inet_protocols = ipv4/g' /etc/postfix/main.cf
 
@@ -43,7 +42,7 @@ net.ipv6.conf.all.disable_ipv6 = 1
 net.ipv6.conf.default.disable_ipv6 = 1
 EOT
 
-cp /tmp/rpsxps /etc/init.d/ && chmod ugo+x /etc/init.d/rpsxps && chkconfig rpsxps on
+#cp /tmp/rpsxps /etc/init.d/ && chmod ugo+x /etc/init.d/rpsxps && chkconfig rpsxps on
 
 cat << EOT >> /etc/sysctl.conf
 # allow testing with buffers up to 64MB 

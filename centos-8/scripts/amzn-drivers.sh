@@ -2,7 +2,7 @@
 # amzn-driversソースのダウンロード（dkmsの都合で /usr/src である必要アリ）
 DRIVER=amzn-drivers
 PACKAGE=ena
-VERSION=2.2.2
+VERSION=2.2.11
 cd /usr/src
 git clone https://github.com/amzn/amzn-drivers
 mv ${DRIVER} ${DRIVER}-${VERSION}
@@ -28,6 +28,7 @@ dkms install -m ${DRIVER} -v ${VERSION}
 cat << EOT > /etc/dracut.conf.d/nvme.conf
 add_drivers+=" nvme "
 EOT
-dracut -v -f
+dracut --force --regenerate-all
+#dracut -v -f
 # モジュールが更新されたのを確認                                                
 modinfo ${PACKAGE}

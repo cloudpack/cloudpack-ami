@@ -1,10 +1,11 @@
-yum -y install --enablerepo=epel,extras \
+dnf -y install --enablerepo=epel \
 	cloud-init \
-	cloud-utils \
 	cloud-utils-growpart \
-	python-pip
-pip install -U urllib3 pip
-pip install -U awscli
+	python38 \
+	python38-pip \
+	python3-boto3
+#pip3.8 install -U awscli
+#dnf -y install aws-cli
 
 systemctl enable cloud-init-local.service
 systemctl enable cloud-init.service

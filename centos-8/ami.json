@@ -26,16 +26,6 @@
   "provisioners": [
     {
       "type": "file",
-      "source": "files/ec2-net-utils-0.5-1.33.el7.centos.noarch.rpm",
-      "destination": "/tmp/ec2-net-utils-0.5-1.33.el7.centos.noarch.rpm"
-    },
-    {
-      "type": "file",
-      "source": "files/ec2-utils-0.5-1.33.el7.centos.noarch.rpm",
-      "destination": "/tmp/ec2-utils-0.5-1.33.el7.centos.noarch.rpm"
-    },
-    {
-      "type": "file",
       "source": "files/rpsxps",
       "destination": "/tmp/rpsxps"
     },
@@ -46,16 +36,11 @@
         "amazon-ebs": {
           "scripts": [
             "scripts/sleep.sh",
-            "scripts/repo-neo4j.sh",
-            "scripts/repo-nginx.sh",
-            "scripts/repo-postgresql.sh",
-            "scripts/repo-mysql.sh",
-            "scripts/bash-environment.sh",
-            "scripts/cloudpack.sh",
+	    "scripts/bash-environment.sh",
             "scripts/dkms.sh",
-            "scripts/ixgbevf.sh",
             "scripts/amzn-drivers.sh",
-            "scripts/chronyd.sh",
+            "scripts/awscli.sh",
+            "scripts/tuned.sh",
             "scripts/cleanup.sh"
           ]
         }

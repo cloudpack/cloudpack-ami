@@ -1,4 +1,4 @@
-yum install -y --enablerepo=epel chrony
+#dnf install -y --enablerepo=epel chrony
 systemctl enable chronyd.service
 CONF=/etc/chrony.conf
 

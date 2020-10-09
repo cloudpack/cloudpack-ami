@@ -1,7 +1,7 @@
-yum -y update
-yum -y install deltarpm
-yum -y install gcc make gcc-c++ kernel-devel-`uname -r` perl
-yum -y install --enablerepo=epel \
+#dnf -y update
+dnf -y install deltarpm
+dnf -y install gcc make gcc-c++ kernel-devel-`uname -r` perl
+dnf -y install --enablerepo=epel \
 	lsof
 
 sed -i.bak -e 's@\(.*\)/mnt\(.*\)@#\1/mnt\2@g' -e 's@\(.*\)swap\(.*\)@#\1swap\2@g' /etc/fstab
@@ -19,5 +19,6 @@ systemctl enable NetworkManager-wait-online.service
 systemctl disable firewalld.service
 systemctl disable kdump.service
 systemctl disable sendmail.service
+systemctl disable sssd.service
 
 rm -rf /tmp/*
